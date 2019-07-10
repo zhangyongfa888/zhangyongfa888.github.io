@@ -77,21 +77,21 @@
             <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
-                Archives
+                全部
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
-                Tags
+                标签
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
-                Categories
+                分类
               </a>
             </li>
         
@@ -222,7 +222,7 @@
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/07/09/hello-world/" target="_blank" rel="external">http://github.zhangyongfa888.site/2019/07/09/hello-world/</a>
+        (侵删)转载注明链接：<a href="/2019/07/09/hello-world/" target="_blank" rel="external">http://github.zhangyongfa888.site/2019/07/09/hello-world/</a>
         
     </div>
     
@@ -301,7 +301,7 @@
     <div class="waves-block waves-effect prev">
       <a href="/2019/07/10/HEXO-Admin/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">HEXO Admin</h4>
+        <h4 class="title">滴滴调整北京市网约车价格 将16区按计价标准划分为5大类</h4>
       </a>
     </div>
   
@@ -322,6 +322,30 @@
 
 
 
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "PWpkfff1WSoRsr13I9f2WfH3-gzGzoHsz",
+            appKey: "x4tMCz9Cs2iUuXk3vFpr97E1",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
 
 
 
