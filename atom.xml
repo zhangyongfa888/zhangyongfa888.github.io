@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://github.zhangyongfa888.site/"/>
-  <updated>2019-07-10T05:47:15.705Z</updated>
+  <updated>2019-07-10T07:13:06.343Z</updated>
   <id>http://github.zhangyongfa888.site/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Markdown基本语法</title>
+    <link href="http://github.zhangyongfa888.site/2019/07/10/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+    <id>http://github.zhangyongfa888.site/2019/07/10/Markdown基本语法/</id>
+    <published>2019-07-10T06:33:19.000Z</published>
+    <updated>2019-07-10T07:13:06.343Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Markdown 是一种<em>轻量级标记语言<em>，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由<strong>约翰·格鲁伯（英语：John Gruber）</strong>创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 _</em></em>.md___, <strong><em>.markdown</em></strong>。</p><h3 id="Markdown-标题"><a href="#Markdown-标题" class="headerlink" title="Markdown 标题"></a>Markdown 标题</h3><h4 id="使用-号标记"><a href="#使用-号标记" class="headerlink" title="使用 # 号标记"></a>使用 # 号标记</h4><p>使用 # 号可表示 1-6 级标题，一级标题对应一个 # 号，二级标题对应两个 # 号，以此类推。<br>如下：</p><pre><code># 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题</code></pre><h4 id="显示效果"><a href="#显示效果" class="headerlink" title="显示效果"></a>显示效果</h4><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h4 id="使用-标记"><a href="#使用-标记" class="headerlink" title="使用-/=标记"></a>使用-/=标记</h4><pre><code>我展示的是一级标题=================我展示的是二级标题-----------------</code></pre><h4 id="显示效果-1"><a href="#显示效果-1" class="headerlink" title="显示效果"></a>显示效果</h4><h1 id="我展示的是一级标题"><a href="#我展示的是一级标题" class="headerlink" title="我展示的是一级标题"></a>我展示的是一级标题</h1><h2 id="我展示的是二级标题"><a href="#我展示的是二级标题" class="headerlink" title="我展示的是二级标题"></a>我展示的是二级标题</h2><h3 id="Markdown-区块"><a href="#Markdown-区块" class="headerlink" title="Markdown 区块"></a>Markdown 区块</h3><pre><code>&gt; 最外层&gt; &gt; 第一层嵌套&gt; &gt; &gt; 第二层嵌套</code></pre><h4 id="显示效果-2"><a href="#显示效果-2" class="headerlink" title="显示效果"></a>显示效果</h4><blockquote><p>最外层</p><blockquote><p>第一层嵌套</p><blockquote><p>第二层嵌套</p></blockquote></blockquote></blockquote><h3 id="Markdown-代码"><a href="#Markdown-代码" class="headerlink" title="Markdown 代码"></a>Markdown 代码</h3><ul><li><code>printf()</code> 函数</li><li>代码区块使用 4 个空格或者一个制表符（Tab 键）。<pre><code>printf() //tab键</code></pre></li></ul><h3 id="Markdown-链接"><a href="#Markdown-链接" class="headerlink" title="Markdown 链接"></a>Markdown 链接</h3><pre><code>[链接名称](&quot;http://www.baidu.com&quot;)       或者&lt;http://www.baidu.com&gt;</code></pre><p> <a href http: www.baidu.com"">链接名称</a></p><p>或者</p><p><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p><h3 id="Markdown-图片"><a href="#Markdown-图片" class="headerlink" title="Markdown 图片"></a>Markdown 图片</h3><p>Markdown 图片语法格式如下：</p><pre><code>  ![alt 属性文本](图片地址)  {% image 图片地址 'alt 属性文本' '可选标题' %}example:  ![RUNOOB 图标](http://static.runoob.com/images/runoob-logo.png)  [RUNOOB 图标](http://static.runoob.com/images/runoob-logo.png &quot;RUNOOB&quot;)</code></pre><p><img src="http://static.runoob.com/images/runoob-logo.png" alt="RUNOOB 图标"></p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://static.runoob.com/images/runoob-logo.png" alt="RUNOOB 图标" title="RUNOOB">                </div>                <div class="image-caption">RUNOOB</div>            </figure><h3 id="Markdown-表格"><a href="#Markdown-表格" class="headerlink" title="Markdown 表格"></a>Markdown 表格</h3><p>Markdown 制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。</p><p>语法格式如下：</p><pre><code>|  表头   | 表头  ||  ----  | ----  || 单元格  | 单元格 || 单元格  | 单元格 |</code></pre><p>   显示如下： </p><table><thead><tr><th>表头</th><th>表头</th></tr></thead><tbody><tr><td>单元格</td><td>单元格</td></tr><tr><td>单元格</td><td>单元格</td></tr></tbody></table><p><strong>对齐方式</strong></p><ul><li>-: 设置内容和标题栏居右对齐</li><li>:- 设置内容和标题栏居左对齐</li><li>:-: 设置内容和标题栏居中对齐<pre><code>| 左对齐 | 右对齐 | 居中对齐 || :-----| ----: | :----: || 单元格 | 单元格 | 单元格 || 单元格 | 单元格 | 单元格 |</code></pre></li></ul><table><thead><tr><th align="left">左对齐</th><th align="right">右对齐</th><th align="center">居中对齐</th></tr></thead><tbody><tr><td align="left">单元格</td><td align="right">单元格</td><td align="center">单元格</td></tr><tr><td align="left">单元格</td><td align="right">单元格</td><td align="center">单元格</td></tr></tbody></table><p><strong>参考 <a href https: www.runoob.com markdown md-tutorial.html"">菜鸟教程</a> 整理</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Markdown基本语法&quot;&gt;&lt;a href=&quot;#Markdown基本语法&quot; class=&quot;headerlink&quot; title=&quot;Markdown基本语法&quot;&gt;&lt;/a&gt;Markdown基本语法&lt;/h2&gt;&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Android Q 功能和 API</title>
