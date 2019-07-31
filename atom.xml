@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://github.zhangyongfa888.site/"/>
-  <updated>2019-07-12T01:09:25.636Z</updated>
+  <updated>2019-07-31T00:47:58.348Z</updated>
   <id>http://github.zhangyongfa888.site/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>滴滴插件化实践</title>
+    <link href="http://github.zhangyongfa888.site/2019/07/30/%E5%BC%9F%E5%BC%9F%E6%8F%92%E4%BB%B6%E5%8C%96%E5%AE%9E%E8%B7%B5/"/>
+    <id>http://github.zhangyongfa888.site/2019/07/30/弟弟插件化实践/</id>
+    <published>2019-07-30T11:05:00.000Z</published>
+    <updated>2019-07-31T00:47:58.348Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="工程目录"><a href="#工程目录" class="headerlink" title="工程目录"></a>工程目录</h3><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://res.zhangyongfa888.site/1564484754934e6w63xr3.png?imageslim" alt="paste image" title>                </div>                <div class="image-caption">paste image</div>            </figure><h4 id="宿主配置"><a href="#宿主配置" class="headerlink" title="宿主配置"></a>宿主配置</h4>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;工程目录&quot;&gt;&lt;a href=&quot;#工程目录&quot; class=&quot;headerlink&quot; title=&quot;工程目录&quot;&gt;&lt;/a&gt;工程目录&lt;/h3&gt;&lt;figure class=&quot;image-bubble&quot;&gt;
+                &lt;div class=&quot;img-lig
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>滴滴插件化</title>
