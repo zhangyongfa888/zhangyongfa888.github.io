@@ -31,7 +31,7 @@
 <meta property="og:description" content="前言目前有个需求，需要获取设备的唯一识别码 标记用户的手机,在android低版本上很好实现，imei或者deviceID之间能够拿到，但是android10已经不给此项权限了……于是开始找资料。 不可重置的设备标识符 ：官（墙）方（外）推荐方法从 Android Q 开始，应用必须具有 READ_PRIVILEGED_PHONE_STATE 特许权限才能访问设备的不可重置标识符（包含 IMEI">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://res.zhangyongfa888.site/1566971512579e8ffjhsp.png?imageslim">
-<meta property="og:updated_time" content="2019-08-28T06:17:18.419Z">
+<meta property="og:updated_time" content="2019-08-28T06:22:55.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android唯一识别码 获取">
 <meta name="twitter:description" content="前言目前有个需求，需要获取设备的唯一识别码 标记用户的手机,在android低版本上很好实现，imei或者deviceID之间能够拿到，但是android10已经不给此项权限了……于是开始找资料。 不可重置的设备标识符 ：官（墙）方（外）推荐方法从 Android Q 开始，应用必须具有 READ_PRIVILEGED_PHONE_STATE 特许权限才能访问设备的不可重置标识符（包含 IMEI">
@@ -216,7 +216,7 @@
             <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>目前有个需求，需要获取设备的唯一识别码 标记用户的手机,在android低版本上很好实现，imei或者deviceID之间能够拿到，但是android10已经不给此项权限了……于是开始找资料。</p>
 <h3 id="不可重置的设备标识符-：官（墙）方（外）推荐方法"><a href="#不可重置的设备标识符-：官（墙）方（外）推荐方法" class="headerlink" title="不可重置的设备标识符 ：官（墙）方（外）推荐方法"></a>不可重置的设备标识符 ：官（墙）方（外）推荐方法</h3><p>从 Android Q 开始，应用必须具有 <strong>READ_PRIVILEGED_PHONE_STATE</strong> 特许权限才能访问设备的不可重置标识符（包含 IMEI 和序列号）。许多用例不需要不可重置的设备标识符。如果您的应用没有该权限，但您仍尝试查询标识符的相关信息，则平台的响应会因目标 SDK 版本而异：</p>
 <p>如果应用以 <strong>Android Q</strong> 为目标平台，则会发生 <strong>SecurityException</strong>。<br>如果应用以 Android 9（API 级别 28）或更低版本为目标平台，则相应方法会返回 null 或占位符数据（如果应用具有 <strong>READ_PHONE_STATE</strong> 权限）。否则，会发生 <strong>SecurityException</strong>。<br>注意：如果您的应用是设备所有者或配置文件所有者应用，那么即使您的应用以 Android Q 为目标平台，您也只需 <strong>READ_PHONE_STATE</strong> 权限即可访问不可重置的设备标识符。此外，如果您的应用具有特殊运营商权限，则无需任何权限即可访问这些标识符。<br>如果您的应用将不可重置的设备标识符用于广告跟踪或用户分析目的，请为这些特定用例创建 Android 广告 ID。要了解详情，请参阅唯一标识符的最佳做法。<a href="https://developer.android.google.cn/training/articles/user-data-ids" target="_blank" rel="noopener">https://developer.android.google.cn/training/articles/user-data-ids</a></p>
-<p>另一篇文章有讲解如何获取广告id :<a href https: www.jianshu.com p 33cfb817a077"">Google Advertising Id 获取</a></p>
+<p>另一篇文章有讲解如何获取广告id :<a href="https://www.jianshu.com/p/33cfb817a077" target="_blank" rel="noopener">Google Advertising Id 获取</a></p>
 <p>但是还需要注册谷歌开发者 申请谷歌广告的id</p>
 <pre><code>The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    
 should follow the instructions here:                                   
@@ -224,7 +224,7 @@ https://googlemobileadssdk.page.link/admob-android-update-manifest
 to add a valid App ID inside the AndroidManifest.                         
 Google Ad Manager publishers should follow instructions here:              
 https://googlemobileadssdk.page.link/ad-manager-android-update-manifest.  </code></pre><p>最后放弃了~</p>
-<h3 id="国内-设备获取设备标识符"><a href="#国内-设备获取设备标识符" class="headerlink" title="国内 设备获取设备标识符"></a>国内 设备获取设备标识符</h3><p><a href http: www.baidu.com"">全国信息安全标准化技术委员会</a>  有<a href https: www.tc260.org.cn front postdetail.html?id="20190808111821""">《信息安全技术 移动互联网应用（App）收集个人信息基本规范（草案）》，</a> 规定了地图导航、网络约车、即时通讯、博客论坛、网络支付、新闻资讯、网上 购物等 21 种常用服务类型可收集的最少信息。</p>
+<h3 id="国内-设备获取设备标识符"><a href="#国内-设备获取设备标识符" class="headerlink" title="国内 设备获取设备标识符"></a>国内 设备获取设备标识符</h3><p><a href="https://www.tc260.org.cn" target="_blank" rel="noopener">全国信息安全标准化技术委员会</a>  有<a href="https://www.tc260.org.cn/front/postDetail.html?id=20190808111821" target="_blank" rel="noopener">《信息安全技术 移动互联网应用（App）收集个人信息基本规范（草案）》，</a> 规定了地图导航、网络约车、即时通讯、博客论坛、网络支付、新闻资讯、网上 购物等 21 种常用服务类型可收集的最少信息。</p>
 <h5 id="App-收集个人信息基本要求"><a href="#App-收集个人信息基本要求" class="headerlink" title="App 收集个人信息基本要求"></a>App 收集个人信息基本要求</h5><h6 id="管理要求"><a href="#管理要求" class="headerlink" title="管理要求"></a>管理要求</h6><p>App收集个人信息应满足以下管理要求：</p>
 <ul>
 <li>a） App 运营者应履行个人信息保护义务，采取必要安全措施，保障用户个人信息安全。</li>
@@ -291,11 +291,11 @@ https://googlemobileadssdk.page.link/ad-manager-android-update-manifest.  </code
 <li>AAID 单个app用于用户统计等，没有VAID的需求情况下 可以使用。</li>
 </ul>
 <p>目前移动安全联盟 仍在免费注册阶段，还没有收费制服。作为旁观者，还是尽早注册，毕竟中国的手机市场很大，而且如上的通过谷歌广告的形式获取唯一识别码走不通，利润可想而知。</p>
-<h5 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h5><p><a href http: www.msa-alliance.cn "">移动安全联盟</a></p>
-<p><a href https: www.tc260.org.cn"">全国信息安全标准化技术委员会</a></p>
-<p><a href https: developer.android.google.cn preview privacy data-identifiers#device-ids"">谷歌官方文档</a></p>
-<p><a href https: dev.mi.com console doc detail?pid="1821""">小米设备标识体系的说明</a></p>
-<p><a href https: www.jianshu.com p 33cfb817a077"">Google Advertising Id 获取</a></p>
+<h5 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h5><p><a href="http://www.msa-alliance.cn/" target="_blank" rel="noopener">移动安全联盟</a></p>
+<p><a href="https://www.tc260.org.cn" target="_blank" rel="noopener">全国信息安全标准化技术委员会</a></p>
+<p><a href="https://developer.android.google.cn/preview/privacy/data-identifiers#device-ids" target="_blank" rel="noopener">谷歌官方文档</a></p>
+<p><a href="https://dev.mi.com/console/doc/detail?pId=1821" target="_blank" rel="noopener">小米设备标识体系的说明</a></p>
+<p><a href="https://www.jianshu.com/p/33cfb817a077" target="_blank" rel="noopener">Google Advertising Id 获取</a></p>
 
         </div>
 
@@ -304,7 +304,7 @@ https://googlemobileadssdk.page.link/ad-manager-android-update-manifest.  </code
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-28T06:17:18.419Z" itemprop="dateUpdated">2019-08-28 14:17:18</time>
+    最后更新时间：<time datetime="2019-08-28T06:22:55.746Z" itemprop="dateUpdated">2019-08-28 14:22:55</time>
 </span><br>
 
 
