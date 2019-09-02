@@ -277,14 +277,7 @@ https://googlemobileadssdk.page.link/ad-manager-android-update-manifest.  </code
 </tr>
 </tbody></table>
 <h4 id="体系说明"><a href="#体系说明" class="headerlink" title="体系说明"></a>体系说明</h4><p>移动智能终端补充设备标识体系架构共涉及四类实体，包括开发者、开发者开发的应用软件、移动智能终端设备的操作系统、用户及用户使用的设备。为保护用户用户的隐私和标识设备的唯一性，根据不同使用对象和不同用途，基于移动智能终端设备，分别生成设备唯一标识符、匿名设备标识符、开发者匿名设备标识符和应用匿名设备标识符，将这四个设备标识符构成补充设备标识体系。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://res.zhangyongfa888.site/1566971512579e8ffjhsp.png?imageslim" alt="体系图" title>
-                </div>
-                <div class="image-caption">体系图</div>
-            </figure>
-<p>唯一标识符作为普通用户仍然是拿不到，但是能够替代的，我们可以用其他的id,</p>
+<p><img src="http://res.zhangyongfa888.site/1566971512579e8ffjhsp.png?imageslim" alt="体系图"><br>唯一标识符作为普通用户仍然是拿不到，但是能够替代的，我们可以用其他的id,</p>
 <ul>
 <li>OAID 可与用户数据、账号绑定 用于个性化推荐、广告业务。</li>
 <li>VAID 多应用之间能够共享的唯一标识，同一个开发者多个应用可以使用，举个例子：司机端和货主端 ，货主端发货刷单，司机端抢单时候可以用vaid判断，是否是同一台设备；缺点是必须是该手机平台的线上应用才能统计到是否是同一个开发者账号下的app,部分厂商，若应用未在其开发者平台后台上架，则认定未非法应用，无 法生成 VAID，手机 LOG 中将会有相关异常值输出。 </li>
@@ -410,35 +403,35 @@ https://googlemobileadssdk.page.link/ad-manager-android-update-manifest.  </code
 
 
 
-    <!-- Valine Comments -->
-    <div class="comments vcomment" id="comments"></div>
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
-    <!-- Valine Comments script -->
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
-        var GUEST_INFO = ['nick','mail','link'];
-        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
-          return GUEST_INFO.indexOf(item) > -1
-        });
-        new Valine({
-            el: '#comments',
-            notify: 'false' == 'true',
-            verify: 'false' == 'true',
-            appId: "PWpkfff1WSoRsr13I9f2WfH3-gzGzoHsz",
-            appKey: "x4tMCz9Cs2iUuXk3vFpr97E1",
-            avatar: "mm",
-            placeholder: "Just go go",
-            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
-            pageSize: "10"
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'c2a2f9c88cbaa9131dfa',
+          clientSecret: 'f7b8e4ba1112224afb352a4a2abc09a665889449',
+          repo: 'zhangyongfa888.github.io',
+          owner: 'zhangyongfa888',
+          admin: ['zhangyongfa888'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
         })
+
+        gitalk.render('gitalk-container')
     </script>
-    <!-- Valine Comments end -->
-
-
-
-
-
-
+</section>
 
 
 
