@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+	<script type="text/javascript" src="/js/love.js"></script>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?6e8ed41c9b3e5150dfe169447c30ea4d"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>记录一次xp模块过程、 | WE ARE YOUNG | So let&#39;s set the world on fire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="xp">
+    <meta name="description" content="0X01无意间发现一款老司机应用，用起来还不错，但是可恶的是有次数限制。怒。于是念念不忘，要破了他！ 0x02按照以往的经验，先拿到apk中的dex文件，但愿不要加固。                                                                                              smali2               不">
+<meta name="keywords" content="xp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录一次xp模块过程、">
+<meta property="og:url" content="http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/index.html">
+<meta property="og:site_name" content="WE ARE YOUNG">
+<meta property="og:description" content="0X01无意间发现一款老司机应用，用起来还不错，但是可恶的是有次数限制。怒。于是念念不忘，要破了他！ 0x02按照以往的经验，先拿到apk中的dex文件，但愿不要加固。                                                                                              smali2               不">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574738377614tkp2dfp0.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/157473852742718lah1yb.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574738616032hnr8mqrb.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574738709346st15sg74.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574739061687qv8842nz.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/15747392256010bkmp8kj.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574739377762peyxjtbd.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574739919684tpmiffl4.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574738616032hnr8mqrb.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574740226439334kyswr.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574740379223q0xtaah2.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/15747404106784nunurai.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/15747404783875zvrt4ei.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574740508509gp2em7qi.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574740583821kpcxtftj.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1574740608262698vd2bv.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/15747407282150bk9c3qh.png?imageslim">
+<meta property="og:updated_time" content="2019-11-26T05:09:37.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记录一次xp模块过程、">
+<meta name="twitter:description" content="0X01无意间发现一款老司机应用，用起来还不错，但是可恶的是有次数限制。怒。于是念念不忘，要破了他！ 0x02按照以往的经验，先拿到apk中的dex文件，但愿不要加固。                                                                                              smali2               不">
+<meta name="twitter:image" content="http://res.zhangyongfa888.site/1574738377614tkp2dfp0.png?imageslim">
+    
+        <link rel="alternate" type="application/atom+xml" title="WE ARE YOUNG" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zhangyongfa</h5>
+          <a href="mailto:1399142039@qq.com" title="1399142039@qq.com" class="mail">1399142039@qq.com</a>
+        </hgroup>
+      </div>
+	
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                全部
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhangyongfa888" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.facebook.com/profile.php?id=100010579066716" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/zhangyongfa888" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/7125015766" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/share" target="_blank" >
+                <i class="icon icon-lg icon-music"></i>
+                日常
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+	
+	
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">记录一次xp模块过程、</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">记录一次xp模块过程、</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-26T03:15:00.000Z" itemprop="datePublished" class="page-time">
+  2019-11-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0X01"><span class="post-toc-number">1.</span> <span class="post-toc-text">0X01</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x02"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x02</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#分析代码"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">分析代码</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x03"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x03</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x"><span class="post-toc-number">4.</span> <span class="post-toc-text">0x??</span></a></li></ol>
+         <div>	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=240px height=86 src="//music.163.com/outchain/player?type=2&id=31517407&auto=1&height=66"></iframe></div>
+		</nav>
+		
+    </aside>
+
+
+<article id="post-记录一次xp模块过程、"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">记录一次xp模块过程、</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-26 11:15:00" datetime="2019-11-26T03:15:00.000Z"  itemprop="datePublished">2019-11-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="0X01"><a href="#0X01" class="headerlink" title="0X01"></a>0X01</h4><p>无意间发现一款老司机应用，用起来还不错，但是可恶的是有次数限制。怒。于是念念不忘，要破了他！</p>
+<h4 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h4><p>按照以往的经验，先拿到apk中的dex文件，但愿不要加固。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://res.zhangyongfa888.site/1574738377614tkp2dfp0.png?imageslim" alt="smali2" title>
+                </div>
+                <div class="image-caption">smali2</div>
+            </figure>
+
+<p>不慌 问题不大。才两个包，好找。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://res.zhangyongfa888.site/157473852742718lah1yb.png?imageslim" alt="入口" title>
+                </div>
+                <div class="image-caption">入口</div>
+            </figure>
+
+<p>找到了splash入口，阅读代码后发现 root后不能使用，使用代理不能使用，模拟器不能使用。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://res.zhangyongfa888.site/1574738616032hnr8mqrb.png?imageslim" alt="paste image" title>
+                </div>
+                <div class="image-caption">paste image</div>
+            </figure>
+
+<p>那好 先去了。</p>
+<h5 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://res.zhangyongfa888.site/1574738709346st15sg74.png?imageslim" alt="initView" title>
+                </div>
+                <div class="image-caption">initView</div>
+            </figure>
+
+<p> b()方法中有个c方法，返回 检测到您使用的是模拟器或者设备已经root,不允许继续使用，所以 hook c方法 强制返回false 使其能够进入到a.a(activity)中。</p>
+<pre><code>XposedHelpers.findAndHookMethod(&quot;com.niming.douyin.ui.splash.SplashActivity&quot;, cl, &quot;c&quot;, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    super.afterHookedMethod(param);
+                    XposedBridge.log(&quot;SplashActivity beforeHookedMethod   &quot; + param.getResult());
+                    param.setResult(false);
+                }
+            });</code></pre><p>   b中还有一个方法，!k.b(this.activity)，看代码是把所有的模拟器标识都列了出来，不知道为啥禁用模拟器，可能这些限制是为了躲坑。</p>
+<p>   <img src="http://res.zhangyongfa888.site/1574739061687qv8842nz.png?imageslim" alt="模拟器识别"></p>
+<p> 使用xp 强制也给他通过</p>
+<pre><code>XposedHelpers.findAndHookMethod(&quot;com.niming.douyin.ui.splash.SplashActivity&quot;, cl, &quot;a&quot;, Context.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    super.afterHookedMethod(param);
+                    XposedBridge.log(&quot;SplashActivity beforeHookedMethod   &quot; + param.getResult());
+                    param.setResult(false);
+                }
+            });</code></pre><p>这样进入到了f()；</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://res.zhangyongfa888.site/15747392256010bkmp8kj.png?imageslim" alt="接口请求" title>
+                </div>
+                <div class="image-caption">接口请求</div>
+            </figure>这里走了一个请求domain的接口，请求成功后 调用了
+
+
+<pre><code>ConfigUtil.getInstance().save(com.niming.douyin.a.a.k, domain);
+this.a.d();</code></pre><p>保存了一下地址，然后调用</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://res.zhangyongfa888.site/1574739377762peyxjtbd.png?imageslim" alt="d方法" title>
+                </div>
+                <div class="image-caption">d方法</div>
+            </figure>
+
+<p>这里是先验证一下设备有没有注册过，如果注册过，直接登录，没有注册过，先注册。在几次测试中发现，这个手机设备号在第一次注册就存入到数据库，再次进入会取之前的数据，限制3次就是从这个设备号查出来的。通过抓取接口发现 当满三次的时候，并不会返回成功的数据，所以无法拿到地址。只能通过重新注册获取这免费的三次机会。<br>所以要hook下这个配置文件，获取是否注册的时候 返回false,重新注册，获取设备号的时候 随机一个，避免重复。</p>
+<pre><code>XposedHelpers.findAndHookMethod(&quot;com.niming.framework.basedb.ConfigUtil&quot;, cl, &quot;getString&quot;, String.class, new XC_MethodHook() {
+               @Override
+               protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                   super.afterHookedMethod(param);
+                   if (param.args[0].equals(&quot;device_id&quot;)) {
+                       //随机id
+                       String deviceId = String.valueOf(UUID.randomUUID().toString());
+                       param.setResult(deviceId);
+
+                   }
+
+               }
+           });
+           XposedHelpers.findAndHookMethod(&quot;com.niming.framework.basedb.ConfigUtil&quot;, cl, &quot;getBooleanValue&quot;, String.class, new XC_MethodHook() {
+               @Override
+               protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                   super.afterHookedMethod(param);
+                   if (param.args[0].toString().equals(&quot;is_device_register&quot;)) {
+                       param.setResult(false);
+                   }
+
+               }
+           });</code></pre><p> 这样每次都会重新注册获取免费的三次机会。</p>
+<p> 在测试过程中发现 新注册后会跳转到广告页SplashAdActivity，这个界面有个延时操作，很麻烦。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://res.zhangyongfa888.site/1574739919684tpmiffl4.png?imageslim" alt="paste image" title>
+                </div>
+                <div class="image-caption">paste image</div>
+            </figure>
+
+<p> d 默认值给了5秒。</p>
+<p> <img src="http://res.zhangyongfa888.site/1574738616032hnr8mqrb.png?imageslim" alt="paste image"></p>
+<p> 给他强制跳转，代码中有个方法</p>
+<pre><code>private void b() {
+  MainActivity.a(this.activity);
+  finish();
+ }</code></pre><p>直接能够调用~</p>
+<pre><code>XposedHelpers.findAndHookMethod(&quot;com.niming.douyin.ui.splash.SplashAdActivity&quot;, cl, &quot;initView&quot;, Bundle.class, new XC_MethodHook() {
+
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    super.afterHookedMethod(param);
+                    //去广告
+                    XposedHelpers.callMethod(param.thisObject, &quot;b&quot;);
+                }
+            });</code></pre><p>  这样跳转的时候就能够忽略延时广告，直接跳转了。</p>
+<h4 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h4><p> 在网络请求测试中发现数据是加密的，当然代码都拿到了，还怕拿不到密码?</p>
+<p> <img src="http://res.zhangyongfa888.site/1574740226439334kyswr.png?imageslim" alt="paste image"></p>
+<p> 这里有个密码，有点兴奋，but不可能这么明显八。<br> 反码了几次发现不对哦。</p>
+<p> <img src="http://res.zhangyongfa888.site/1574740379223q0xtaah2.png?imageslim" alt="paste image"></p>
+<p> ennnnn….</p>
+<p> <img src="http://res.zhangyongfa888.site/15747404106784nunurai.png?imageslim" alt="paste image"></p>
+<p> e….<br> 我觉得这个TextUtils肯定用到了，戳进去发现是Jni……</p>
+<p> <img src="http://res.zhangyongfa888.site/15747404783875zvrt4ei.png?imageslim" alt="paste image"></p>
+<p> 不过没关系。有工具！<br> 找到lib中的security,拖到这个小姐姐身上</p>
+<p> <img src="http://res.zhangyongfa888.site/1574740508509gp2em7qi.png?imageslim" alt="paste image"></p>
+<p> <img src="http://res.zhangyongfa888.site/1574740583821kpcxtftj.png?imageslim" alt="paste image"></p>
+<p> 很明显 仅仅返回的是字符串。从java代码看，应该是不同的环境需要不同的密码取转码。</p>
+<p> <img src="http://res.zhangyongfa888.site/1574740608262698vd2bv.png?imageslim" alt="paste image"></p>
+<p> 解下数据，这波操作可以。</p>
+<p> <img src="http://res.zhangyongfa888.site/15747407282150bk9c3qh.png?imageslim" alt="paste image"></p>
+<h4 id="0x"><a href="#0x" class="headerlink" title="0x??"></a>0x??</h4><p> __ //todo __</p>
+<p> 1.三次后自动注册一次 确保一直有次数</p>
+<p> 2.暴力寻找vip的uuid</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-11-26T05:09:37.005Z" itemprop="dateUpdated">2019-11-26 13:09:37</time>
+</span><br>
+
+
+        
+        (侵删)转载注明链接：<a href="/2019/11/26/记录一次xp模块过程、/" target="_blank" rel="external">http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://zhangyongfa888.site">
+            <img src="/img/avatar.jpg" alt="zhangyongfa">
+            zhangyongfa
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xp/">xp</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/&title=《记录一次xp模块过程、》 — WE ARE YOUNG&pic=http://zhangyongfa888.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/&title=《记录一次xp模块过程、》 — WE ARE YOUNG&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《记录一次xp模块过程、》 — WE ARE YOUNG&url=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/&via=http://zhangyongfa888.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/04/Tinker集成/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">TINKER 集成</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "PWpkfff1WSoRsr13I9f2WfH3-gzGzoHsz",
+            appKey: "x4tMCz9Cs2iUuXk3vFpr97E1",
+            avatar: "monsterid",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+	
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <!-- 
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span> </span> -->
+            <br>
+            <p id="hitokoto" >:D 获取中...</p>
+
+        </p>
+
+    </div>
+    <div class="bottom">
+        <p><span>zhangyongfa &copy; 2018 - 2019</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">冀ICP备17033377号</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/&title=《记录一次xp模块过程、》 — WE ARE YOUNG&pic=http://zhangyongfa888.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/&title=《记录一次xp模块过程、》 — WE ARE YOUNG&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《记录一次xp模块过程、》 — WE ARE YOUNG&url=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/&via=http://zhangyongfa888.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3aQW7jQAwEQP//01kgpwALa7tJjeIFSqfATuQpH0Smydcrvr6+r+vX//6d63fz+/+8XicuPDw8vNHR313XB73++d2x3t0/+av8zHh4eHineflDv/2Y6y9rVhiSM+Ph4eF9Am/4AWVJSD4RDw8P73/h5TFBEiLM2mg8PDy8z+Ft2uKW0UYMD2UteHh4eDGvHYB9ws8H53t4eHh4i6n6vlTsv7LNafHw8PBO8JKGOIli8xa5jXpn47TiuHh4eHgj3jPLATk4Dy8SCx4eHt69vLwt3iwNJIXneoQ2fB0PDw/vAC9frsoHV9fHbQ86+3Q8PDy8c7xNrJC3vHm73EYYqwAXDw8Pb8Sbtaqb2HdTwZL71EUCDw8Pr+Qlj/62Ib5rFWA/osPDw8M7wZuFAnnx2Az7ZxHJsJnGw8PDmzxL69a23W7a32G1gIWHh4d3Ey//538WOrQB7ia8eBtG4OHh4R3g5e317NF/b7NelBw8PDy8R3hteWhXB9rGehZb4OHh4T3DawOCJDLIm/VifSoequHh4eGd4LUhQhvXJgUj+WraBdlhRoKHh4cX8zbj/DZazSdybbP+j3vi4eHh3cTLG99ZYchb5/yhX5wEDw8P70HerLHO2+I87DiyGYGHh4e34CXXbMC/WQi4q8zg4eHh/RavbbXbh3hbHtr4GA8PD+8Erw0j8lfy0Vcezubv4uHh4T3Pu2solQQWd1UwPDw8vNO8r/JqVwraVntfqN6m1Hh4eHg38WYP3GFrWy4lzNr0YQaDh4eHV/KSYpBgZqWlXVNolxLw8PDwzvE2ceqmyW5D3nbOhYeHh/cJvNliwWYJoF3bwsPDw/sc3mZddcPOyxIeHh7ek7z2EHm0uoknkvHYbVkLHh4e3va/+9Wwv324J4VnFv7i4eHh3cr7AxtcxTrlZXJUAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script async src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"tagMode":false});</script></body>
+</html>
