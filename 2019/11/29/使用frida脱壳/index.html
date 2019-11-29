@@ -36,7 +36,7 @@
 <meta property="og:description" content="安卓常见脱壳方法之前了解过一些加固方法，像360，乐固，爱加密，梆梆等。很多apk包都经过加壳处理，因此想了解更多内容就需要对加壳的APP进行脱壳处理。 drizzleDumper1.下载文件 https://www.lanzous.com/i7qbkva 2.将对应系统架构的drizzleDumper移动到根目录/data/local/tmp下，赋予读写执行权限 3.cmd进入到该目录下 执行">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://res.zhangyongfa888.site/1575011142974yvrpfxwf.png?imageslim">
-<meta property="og:updated_time" content="2019-11-29T07:18:28.930Z">
+<meta property="og:updated_time" content="2019-11-29T07:24:51.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用frida脱壳">
 <meta name="twitter:description" content="安卓常见脱壳方法之前了解过一些加固方法，像360，乐固，爱加密，梆梆等。很多apk包都经过加壳处理，因此想了解更多内容就需要对加壳的APP进行脱壳处理。 drizzleDumper1.下载文件 https://www.lanzous.com/i7qbkva 2.将对应系统架构的drizzleDumper移动到根目录/data/local/tmp下，赋予读写执行权限 3.cmd进入到该目录下 执行">
@@ -206,7 +206,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安卓常见脱壳方法"><span class="post-toc-number">1.</span> <span class="post-toc-text">安卓常见脱壳方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#drizzleDumper"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">drizzleDumper</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Fdex2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Fdex2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ZjDroid"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">ZjDroid</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#易开发"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">易开发</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#frida"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">frida</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#后续"><span class="post-toc-number">2.</span> <span class="post-toc-text">后续</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安卓常见脱壳方法"><span class="post-toc-number">1.</span> <span class="post-toc-text">安卓常见脱壳方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#drizzleDumper"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">drizzleDumper</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#FDex2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">FDex2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ZjDroid"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">ZjDroid</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#易开发"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">易开发</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#frida"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">frida</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#后续"><span class="post-toc-number">2.</span> <span class="post-toc-text">后续</span></a></li></ol>
          <div>	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=240px height=86 src="//music.163.com/outchain/player?type=2&id=31517407&auto=1&height=66"></iframe></div>
 		</nav>
 		
@@ -241,20 +241,20 @@
 <p>包名：要脱壳应用的包名</p>
 <p>时间：单位s,打卡应用后多久后开始脱壳</p>
 <p>4.脱壳的文件保存在/data/local/tmp/ </p>
-<p>** 现有样例apk 360/乐固 无法脱壳/小米MIX2S/Android10/其他机型未测试 **</p>
-<h4 id="Fdex2"><a href="#Fdex2" class="headerlink" title="Fdex2"></a>Fdex2</h4><p>FDex2 ，基于xposed框架实现。</p>
+<p><strong><em>现有样例apk 360/乐固 无法脱壳/小米MIX2S/Android10/其他机型未测试</em></strong></p>
+<h4 id="FDex2"><a href="#FDex2" class="headerlink" title="FDex2"></a>FDex2</h4><p>FDex2基于xposed框架实现。</p>
 <p>1.下载FDex2 ,VXP  <a href="https://www.lanzous.com/b098smcoj" target="_blank" rel="noopener">https://www.lanzous.com/b098smcoj</a> 密码:tuoqiao</p>
 <p>2.安装FDEX2 和要脱壳的应用到 VXP中。</p>
 <p>3.重启VXP，打卡FDEX2选中要脱壳的应用</p>
 <p>4.打开被脱的应用</p>
 <p>5.生成的dex在data/data/io.va.exposed.virtual/data/user/0/包名/</p>
-<p>** 现有样例apk 360/乐固 无法脱壳/小米MIX2S/Android10/其他机型未测试 **</p>
+<p><strong><em>现有样例apk 360/乐固 无法脱壳/小米MIX2S/Android10/其他机型未测试</em></strong></p>
 <h4 id="ZjDroid"><a href="#ZjDroid" class="headerlink" title="ZjDroid"></a><a href="https://github.com/halfkiss/ZjDroid" target="_blank" rel="noopener">ZjDroid</a></h4><p> FDex2 同样基于xposed框架实现。具体操作 详见<a href="https://www.cnblogs.com/goodhacker/p/3961045.html" target="_blank" rel="noopener">https://www.cnblogs.com/goodhacker/p/3961045.html</a></p>
 <p> <a href="https://www.lanzous.com/i7qcfdi" target="_blank" rel="noopener"> 下载ZjDroid</a></p>
-<p> ** 现有样例apk 360/乐固 无法脱壳/小米MIX2S/Android10/其他机型未测试 **</p>
+<p> <strong><em>现有样例apk 360/乐固 无法脱壳/小米MIX2S/Android10/其他机型未测试</em></strong></p>
 <h4 id="易开发"><a href="#易开发" class="headerlink" title="易开发"></a>易开发</h4><p>易开发是一款帮助开发人员快速开发的工具，功能包括界面分析，页面信息等。目前软件尚未完成，更多功能完善中。详见 <a href="https://github.com/WrBug/DeveloperHelper" target="_blank" rel="noopener">https://github.com/WrBug/DeveloperHelper</a></p>
 <p>下载工具 <a href="https://www.coolapk.com/apk/com.wrbug.developerhelper" target="_blank" rel="noopener">https://www.coolapk.com/apk/com.wrbug.developerhelper</a></p>
-<p>** 现有样例apk 360/乐固 无法脱壳/小米MIX2S/Android10/其他机型未测试 **</p>
+<p><strong><em>现有样例apk 360/乐固 无法脱壳/小米MIX2S/Android10/其他机型未测试</em></strong></p>
 <h4 id="frida"><a href="#frida" class="headerlink" title="frida"></a>frida</h4><p>1.Frida的安装很简单，需要在windows安装frida客户端和在安卓安装frida服务端。需要python+node环境。</p>
 <p>__windows __</p>
 <p>安装python和pip，注意添加环境变量，打开pip的安装包，输入命令</p>
@@ -271,7 +271,7 @@
 <p> 3.开始脱壳</p>
 <p> 使用<a href="https://github.com/GuoQiang1993/Frida-Apk-Unpack" target="_blank" rel="noopener">https://github.com/GuoQiang1993/Frida-Apk-Unpack</a> 提供的js 去脱壳。</p>
 <p> <img src="http://res.zhangyongfa888.site/1575011142974yvrpfxwf.png?imageslim" alt="样例"></p>
-<p>** 现有样例apk 360/乐固 脱壳 小米MIX2S/Android10 测试无法脱壳 红米6 pro/Android9可脱壳 **</p>
+<p><strong><em>现有样例apk 360/乐固 脱壳 小米MIX2S/Android10 测试无法脱壳 红米6 pro/Android9可脱壳</em></strong></p>
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p> 其他脱壳方法还包括 IDA调试脱壳/修改系统源码主动脱壳/虚拟化等技术，仍在学习中。</p>
 
         </div>
@@ -281,7 +281,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-11-29T07:18:28.930Z" itemprop="dateUpdated">2019-11-29 15:18:28</time>
+    最后更新时间：<time datetime="2019-11-29T07:24:51.641Z" itemprop="dateUpdated">2019-11-29 15:24:51</time>
 </span><br>
 
 
