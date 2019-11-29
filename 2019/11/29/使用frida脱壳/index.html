@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+	<script type="text/javascript" src="/js/love.js"></script>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?6e8ed41c9b3e5150dfe169447c30ea4d"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>使用frida脱壳 | WE ARE YOUNG | So let&#39;s set the world on fire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="安卓常见脱壳方法之前了解过一些加固方法，像360，乐固，爱加密，梆梆等。很多apk包都经过加壳处理，因此想了解更多内容就需要对加壳的APP进行脱壳处理。 drizzleDumper1.下载文件 https://www.lanzous.com/i7qbkva 2.将对应系统架构的drizzleDumper移动到根目录/data/local/tmp下，赋予读写执行权限 3.cmd进入到该目录下 执行">
+<meta name="keywords" content="blogs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用frida脱壳">
+<meta property="og:url" content="http://zhangyongfa888.site/2019/11/29/使用frida脱壳/index.html">
+<meta property="og:site_name" content="WE ARE YOUNG">
+<meta property="og:description" content="安卓常见脱壳方法之前了解过一些加固方法，像360，乐固，爱加密，梆梆等。很多apk包都经过加壳处理，因此想了解更多内容就需要对加壳的APP进行脱壳处理。 drizzleDumper1.下载文件 https://www.lanzous.com/i7qbkva 2.将对应系统架构的drizzleDumper移动到根目录/data/local/tmp下，赋予读写执行权限 3.cmd进入到该目录下 执行">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1575011142974yvrpfxwf.png?imageslim">
+<meta property="og:updated_time" content="2019-11-29T07:13:44.210Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用frida脱壳">
+<meta name="twitter:description" content="安卓常见脱壳方法之前了解过一些加固方法，像360，乐固，爱加密，梆梆等。很多apk包都经过加壳处理，因此想了解更多内容就需要对加壳的APP进行脱壳处理。 drizzleDumper1.下载文件 https://www.lanzous.com/i7qbkva 2.将对应系统架构的drizzleDumper移动到根目录/data/local/tmp下，赋予读写执行权限 3.cmd进入到该目录下 执行">
+<meta name="twitter:image" content="http://res.zhangyongfa888.site/1575011142974yvrpfxwf.png?imageslim">
+    
+        <link rel="alternate" type="application/atom+xml" title="WE ARE YOUNG" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zhangyongfa</h5>
+          <a href="mailto:1399142039@qq.com" title="1399142039@qq.com" class="mail">1399142039@qq.com</a>
+        </hgroup>
+      </div>
+	
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                全部
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhangyongfa888" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.facebook.com/profile.php?id=100010579066716" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/zhangyongfa888" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://t.me/joinchat/AAAAAEJricBW17-dsZbqew" target="_blank" >
+                <i class="icon icon-lg icon-telegram"></i>
+                Telegram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/7125015766" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/share" target="_blank" >
+                <i class="icon icon-lg icon-music"></i>
+                日常
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+	
+	
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用frida脱壳</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用frida脱壳</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-29T06:29:21.000Z" itemprop="datePublished" class="page-time">
+  2019-11-29
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安卓常见脱壳方法"><span class="post-toc-number">1.</span> <span class="post-toc-text">安卓常见脱壳方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#drizzleDumper"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">drizzleDumper</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Fdex2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Fdex2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ZjDroid"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">ZjDroid</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#易开发"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">易开发</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#frida"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">frida</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#后续"><span class="post-toc-number">2.</span> <span class="post-toc-text">后续</span></a></li></ol>
+         <div>	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=240px height=86 src="//music.163.com/outchain/player?type=2&id=31517407&auto=1&height=66"></iframe></div>
+		</nav>
+		
+    </aside>
+
+
+<article id="post-使用frida脱壳"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用frida脱壳</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-29 14:29:21" datetime="2019-11-29T06:29:21.000Z"  itemprop="datePublished">2019-11-29</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="安卓常见脱壳方法"><a href="#安卓常见脱壳方法" class="headerlink" title="安卓常见脱壳方法"></a>安卓常见脱壳方法</h3><p>之前了解过一些加固方法，像360，乐固，爱加密，梆梆等。很多apk包都经过加壳处理，因此想了解更多内容就需要对加壳的APP进行脱壳处理。</p>
+<h4 id="drizzleDumper"><a href="#drizzleDumper" class="headerlink" title="drizzleDumper"></a>drizzleDumper</h4><p>1.下载文件 <a href="https://www.lanzous.com/i7qbkva" target="_blank" rel="noopener">https://www.lanzous.com/i7qbkva</a></p>
+<p>2.将对应系统架构的drizzleDumper移动到根目录/data/local/tmp下，赋予读写执行权限</p>
+<p>3.cmd进入到该目录下 执行 ./drizzleDumper 包名 时间</p>
+<p>包名：要脱壳应用的包名</p>
+<p>时间：单位s,打卡应用后多久后开始脱壳</p>
+<p>4.脱壳的文件保存在/data/local/tmp/ </p>
+<p>*<em>现有样例apk 360/乐固 无法脱壳 *</em></p>
+<h4 id="Fdex2"><a href="#Fdex2" class="headerlink" title="Fdex2"></a>Fdex2</h4><p>FDex2 ，基于xposed框架实现。</p>
+<p>1.下载FDex2 ,VXP  <a href="https://www.lanzous.com/b098smcoj" target="_blank" rel="noopener">https://www.lanzous.com/b098smcoj</a> 密码:tuoqiao</p>
+<p>2.安装FDEX2 和要脱壳的应用到 VXP中。</p>
+<p>3.重启VXP，打卡FDEX2选中要脱壳的应用</p>
+<p>4.打开被脱的应用</p>
+<p>5.生成的dex在data/data/io.va.exposed.virtual/data/user/0/包名/</p>
+<p><strong>现有样例apk 360/乐固 小米MIX2S  Android10 其他机型未测试</strong></p>
+<h4 id="ZjDroid"><a href="#ZjDroid" class="headerlink" title="ZjDroid"></a><a href="https://github.com/halfkiss/ZjDroid" target="_blank" rel="noopener">ZjDroid</a></h4><p> FDex2 同样基于xposed框架实现。具体操作 详见<a href="https://www.cnblogs.com/goodhacker/p/3961045.html" target="_blank" rel="noopener">https://www.cnblogs.com/goodhacker/p/3961045.html</a></p>
+<p> <a href="https://www.lanzous.com/i7qcfdi" target="_blank" rel="noopener"> 下载ZjDroid</a></p>
+<p> <strong>现有样例apk 360/乐固 小米MIX2S  Android10 其他机型未测试</strong></p>
+<h4 id="易开发"><a href="#易开发" class="headerlink" title="易开发"></a>易开发</h4><p>易开发是一款帮助开发人员快速开发的工具，功能包括界面分析，页面信息等。目前软件尚未完成，更多功能完善中。详见 <a href="https://github.com/WrBug/DeveloperHelper" target="_blank" rel="noopener">https://github.com/WrBug/DeveloperHelper</a></p>
+<p>下载工具 <a href="https://www.coolapk.com/apk/com.wrbug.developerhelper" target="_blank" rel="noopener">https://www.coolapk.com/apk/com.wrbug.developerhelper</a></p>
+<p><strong>现有样例apk 360/乐固 无法脱壳 小米MIX2S  Android10 其他机型未测试*</strong></p>
+<h4 id="frida"><a href="#frida" class="headerlink" title="frida"></a>frida</h4><p>1.Frida的安装很简单，需要在windows安装frida客户端和在安卓安装frida服务端。需要python+node环境。</p>
+<p>__windows __</p>
+<p>安装python和pip，注意添加环境变量，打开pip的安装包，输入命令</p>
+<pre><code>pip install Frida-tools</code></pre><p>到python安装目录/script</p>
+<pre><code>pipinstall  selenium</code></pre><p> __ android __</p>
+<p> 首先到github上下载frida-server，网址为<a href="https://github.com/frida/frida/releases" target="_blank" rel="noopener">https://github.com/frida/frida/releases</a></p>
+<p> 找到符合自己系统架构的文件</p>
+<p> 移动到data/local/tmp/下 赋予可读写执行权限。</p>
+<p> 2.开启服务</p>
+<p> adb shell</p>
+<p> adb su</p>
+<p> ./data/local/tmp/frida-server-12.7.23-android-arm64</p>
+<p> cmd不报错 弹窗不消失表示服务在运行。</p>
+<p> 3.开始脱壳</p>
+<p> 使用<a href="https://github.com/GuoQiang1993/Frida-Apk-Unpack" target="_blank" rel="noopener">https://github.com/GuoQiang1993/Frida-Apk-Unpack</a> 提供的js 去脱壳。</p>
+<p> <img src="http://res.zhangyongfa888.site/1575011142974yvrpfxwf.png?imageslim" alt="样例"></p>
+<p>*<em>现有样例apk 360/乐固 脱壳 小米MIX2S/Android10 测试无法脱壳 红米6 pro/Android9可脱壳 *</em></p>
+<h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p> 其他脱壳方法还包括 IDA调试脱壳/修改系统源码主动脱壳/虚拟化等技术，仍在学习中。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-11-29T07:13:44.210Z" itemprop="dateUpdated">2019-11-29 15:13:44</time>
+</span><br>
+
+
+        
+        (侵删)转载注明链接：<a href="/2019/11/29/使用frida脱壳/" target="_blank" rel="external">http://zhangyongfa888.site/2019/11/29/使用frida脱壳/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://zhangyongfa888.site">
+            <img src="/img/avatar.jpg" alt="zhangyongfa">
+            zhangyongfa
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/&title=《使用frida脱壳》 — WE ARE YOUNG&pic=http://zhangyongfa888.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/&title=《使用frida脱壳》 — WE ARE YOUNG&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用frida脱壳》 — WE ARE YOUNG&url=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/&via=http://zhangyongfa888.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/26/记录一次xp模块过程、/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">记录一次xp模块过程、</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "PWpkfff1WSoRsr13I9f2WfH3-gzGzoHsz",
+            appKey: "x4tMCz9Cs2iUuXk3vFpr97E1",
+            avatar: "monsterid",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+	
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <!-- 
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span> </span> -->
+            <br>
+            <p id="hitokoto" >:D 获取中...</p>
+
+        </p>
+
+    </div>
+    <div class="bottom">
+        <p><span>zhangyongfa &copy; 2018 - 2019</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">冀ICP备17033377号</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/&title=《使用frida脱壳》 — WE ARE YOUNG&pic=http://zhangyongfa888.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/&title=《使用frida脱壳》 — WE ARE YOUNG&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用frida脱壳》 — WE ARE YOUNG&url=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/&via=http://zhangyongfa888.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://zhangyongfa888.site/2019/11/29/使用frida脱壳/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aQY6DMAwF0N7/0sy2UlX6f0KrIXmsEFMYvywiO/bjEV/H0/X65Pl5/td396+/v+zCwMC4LeM4vc4ZM19OFiV5FwMDYx/GuyCSbTG/bxcoiQ0DAwMjT+DylO48BcTAwMC4ljGTPp6XvhgYGBhjRWz7VhJ0u2QX1OIYGBg3ZOTJ3O/vv9LfwMDAuBXjKK/kC3nj83yZiqgwMDCWZow1I2cOyPJ0s44HAwNjA0a+pc4MSbRJYVGyYmBgbMBoU72xY/2xQbGojYqBgbEoo20J5LB2a0626bd7LAYGxtKM/FBsbCPOg2jfiopYDAyMhRjf6Anm7YEx6o9amxgYGP+GkQSXtCHzEOfbDB9SQwwMjOUYY4laQh1LK/MWAgYGxg6Ma5O8ZPCrPcirq3AMDIylGW1Ybbk71k6oy1cMDIzlGO0B3Pxh/dgytYU0BgbGqoz5zTdvA+RBT/U0MDAwFmVclZC11HaZMDAwdmO0zcs2rJnUcDApxMDAWJQxE3S7RbbNgyhCDAyMDRhtEdsOkLXjYvVoGgYGxgaMtjSduc839zwNxcDAWJVxlNfMwVnejGyHWTEwMNZmzDQ422GLvCU5hsfAwFibkWyyeWmajKsmKWP+SwwMjH0Y7cbXgtsQL6vFMTAwMIKsc2zMqx5Tw8DAwIg/2qaM+f/68E0MDIwNGEnC14Y+kywmy4qBgbEPY2zMYubJWBJ5QSMTAwPjfow/WYSJh2AmNZMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script async src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"tagMode":false});</script></body>
+</html>
