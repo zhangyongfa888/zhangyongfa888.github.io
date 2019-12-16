@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhangyongfa888.site/"/>
-  <updated>2019-11-29T07:24:51.641Z</updated>
+  <updated>2019-12-16T02:20:14.106Z</updated>
   <id>http://zhangyongfa888.site/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用反射和插件化实现实现对宿主更新</title>
+    <link href="http://zhangyongfa888.site/2019/12/16/%E4%BD%BF%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%8F%92%E4%BB%B6%E5%8C%96%E5%AE%9E%E7%8E%B0%E5%AE%9E%E7%8E%B0%E5%AF%B9%E5%AE%BF%E4%B8%BB%E6%9B%B4%E6%96%B0/"/>
+    <id>http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/</id>
+    <published>2019-12-16T01:49:46.000Z</published>
+    <updated>2019-12-16T02:20:14.106Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>对于先有项目，没有集成热更新功能，但是集成了滴滴的插件化。唯一的缺陷就是无法在不更新宿主的情况下对宿主进行更新。</p><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>还好在打开宿主时候的splash页和main页进行了加载了一个备用插件，可以在这个备用插件中进行操作。<br>splash中的代码，在首页加载push插件，原计划此插件是针对不同的手机厂商集成不同的第三方推送，现在正好可修复宿主。</p><pre><code>Class cl = plugin.getClassLoader().loadClass(&quot;***.huozhu.plugin_push.PushDispatch&quot;);                           Constructor ct = cl.getDeclaredConstructor(new Class[]{Context.class});                           AppIntent appIntent = (AppIntent) ct.newInstance(new Object[]{context});                           Intent intent = new Intent();                           intent.putExtra(&quot;from&quot;, &quot;splash&quot;);                           appIntent.startAppActivity(intent);</code></pre><p>main中的代码</p><pre><code>LogUtils.e(&quot;plugin---&gt;&quot; + plugin.getPackageName());                Class cl = plugin.getClassLoader().loadClass(&quot;***.huozhu.plugin_push.PushDispatch&quot;);                Constructor ct = cl.getDeclaredConstructor(new Class[]{Context.class});                AppIntent appIntent = (AppIntent) ct.newInstance(new Object[]{context});                Intent intent = new Intent();                intent.putExtra(&quot;from&quot;, &quot;main&quot;);                appIntent.startAppActivity(intent);</code></pre><h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4><p>目前的需求是修改主页中菜单的数据，要求新添加一行数据</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://res.zhangyongfa888.site/15764614050129jii4u3w.png?imageslim" alt="push中的处理" title>                </div>                <div class="image-caption">push中的处理</div>            </figure>其中extra是处理推送的情况，小米推送（极光）点击无法弹出界面，所以需要自己重写通知。from用于区分来源。比如这次要修改主页的一行数据<p>先看下宿主代码，找到切入点：</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://res.zhangyongfa888.site/1576461670707y1zhwrus.png?imageslim" alt="main代码" title>                </div>                <div class="image-caption">main代码</div>            </figure>宿主中 在这里对数据进行添加，是一个网络请求。考虑会有延时。所以有两个方案，一个是延时后添加一条，一个是hook网络请求，重写添加全部。可行性的话，1很简单，2过于繁琐。针对1方案，再考虑切入点。可以针对menuModels进行数据添加，也可对adapter进行数据添加。考虑到对集合添加后还需要adapter刷新，所以直接对adapter进行添加数据。<p>代码</p><pre><code> private void setMenu() {    try {        Class menuModelClz = contextHost.getClassLoader().loadClass(&quot;****.huozhu.ep.model.MenuModel&quot;);        Constructor constructor = menuModelClz.getConstructor(new Class[]{int.class, boolean.class, String.class, int.class});        Object instance = constructor.newInstance(R.drawable.host_main_menu_driver_group, false, &quot;我的承运人&quot;, 7);        Field field = AppUtils.activities.get(0).getClass().getDeclaredField(&quot;adapter&quot;);        LogUtils.e(&quot;setMenu  field   &quot; + field.getClass().toString());        field.setAccessible(true);        BaseQuickAdapter adapter = (BaseQuickAdapter) field.get(AppUtils.activities.get(0));        if (adapter == null) {            new Handler().postDelayed(new Runnable() {                @Override                public void run() {                    setMenu();                }            }, 2000);        }        adapter.addData(2, instance);    } catch (Exception e) {        LogUtils.e(&quot;setMenu Error    &quot; + e.toString());    }}</code></pre><p>  这样就对宿主进行了数据的添加。</p><h4 id="其他修改"><a href="#其他修改" class="headerlink" title="其他修改"></a>其他修改</h4><p>  再有一个支付弹窗，直接使用的是宿主中的方法。所以如果要该支付这块，要更新宿主。那岂不是很麻烦。所以反射就又用到了。功能修改是 点击最后一行的时候由“下单”改为“去支付”。<br>  现有的操作是对这个弹窗视图进行覆写，然后重写其中的点击事件的代码。所有的控件都能顺利拿到，唯独这个点击事件。所有通过反射，当弹窗显示的时候，对这个“下单”的按钮进行hook。</p><p>  代码：</p><pre><code>  private void hookOnClickListener(View view) {    try {        // 得到 View 的 ListenerInfo 对象        //得到getListenerInfo方法        Method getListenerInfo = View.class.getDeclaredMethod(&quot;getListenerInfo&quot;);        getListenerInfo.setAccessible(true);        //得到ListenerInfo变量        Object listenerInfo = getListenerInfo.invoke(view);        // 得到 原始的 OnClickListener 对象        //获取指定类        Class&lt;?&gt; listenerInfoClz = Class.forName(&quot;android.view.View$ListenerInfo&quot;);        //获取类中的变量        Field mOnClickListener = listenerInfoClz.getDeclaredField(&quot;mOnClickListener&quot;);        mOnClickListener.setAccessible(true);        View.OnClickListener originOnClickListener = (View.OnClickListener) mOnClickListener.get(listenerInfo);        // 用自定义的 OnClickListener 替换原始的 OnClickListener        View.OnClickListener hookedOnClickListener = new HookedOnClickListener(originOnClickListener);        mOnClickListener.set(listenerInfo, hookedOnClickListener);    } catch (Exception e) {    }}class HookedOnClickListener implements View.OnClickListener {    private View.OnClickListener origin;    HookedOnClickListener(View.OnClickListener origin) {        this.origin = origin;    }    @Override    public void onClick(View v) {        if (origin != null) {            origin.onClick(v);        }        payBtn.setText(&quot;去支付&quot;);    }}</code></pre><p>   还有一种方法就是对setText进行监听，当这个控件被赋值为“下单”的时候，重新赋值为“去支付”。</p><h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>  hook的切入点很重要。顺便对反射进行了复习，觉得法国生物学家拉马克提出的“用进废退”果然没错，经常使用就会很顺利，一不使用的就感觉自己退化了一样，跟不上了。可能导致最后的结局就是“适者生存”吧！</p><h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>  <a href="https://www.jianshu.com/p/9be58ee20dee" target="_blank" rel="noopener">Java高级特性——反射</a></p><p>  <a href="https://blog.csdn.net/shoneworn/article/details/80476089" target="_blank" rel="noopener">Hook技术看这篇就够了</a></p><p>  <a href="https://www.jianshu.com/p/0799aa19ada1" target="_blank" rel="noopener">一文读懂 AOP | 你想要的最全面 AOP 方法探讨</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h4&gt;&lt;p&gt;对于先有项目，没有集成热更新功能，但是集成了滴滴的插件化。唯一的缺陷就是无法在不更新宿主的情况下对宿主进行更新。&lt;/p&gt;
+&lt;h4 id=&quot;解
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>使用frida脱壳</title>

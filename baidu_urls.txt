@@ -1,3 +1,4 @@
+http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/
 http://zhangyongfa888.site/2019/11/29/使用frida脱壳/
 http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/
 http://zhangyongfa888.site/2019/11/04/Tinker集成/
@@ -7,6 +8,3 @@ http://zhangyongfa888.site/2019/08/23/Awesome-android-tips/
 http://zhangyongfa888.site/2019/07/30/滴滴插件化实践/
 http://zhangyongfa888.site/2019/07/12/滴滴插件化/
 http://zhangyongfa888.site/2019/07/10/Markdown基本语法/
-http://zhangyongfa888.site/2019/07/10/Android-Q-功能和-API/
-http://zhangyongfa888.site/2019/07/10/HEXO-Admin/
-http://zhangyongfa888.site/2019/07/09/hello-world/
