@@ -1,3 +1,4 @@
+http://zhangyongfa888.site/2019/12/20/对一点英语进行破解（xp模块）/
 http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/
 http://zhangyongfa888.site/2019/11/29/使用frida脱壳/
 http://zhangyongfa888.site/2019/11/26/记录一次xp模块过程、/
@@ -7,4 +8,3 @@ http://zhangyongfa888.site/2019/08/28/Android唯一识别码-获取/
 http://zhangyongfa888.site/2019/08/23/Awesome-android-tips/
 http://zhangyongfa888.site/2019/07/30/滴滴插件化实践/
 http://zhangyongfa888.site/2019/07/12/滴滴插件化/
-http://zhangyongfa888.site/2019/07/10/Markdown基本语法/
