@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhangyongfa888.site/"/>
-  <updated>2020-01-19T06:18:37.620Z</updated>
+  <updated>2020-01-19T06:30:17.625Z</updated>
   <id>http://zhangyongfa888.site/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://zhangyongfa888.site/2020/01/19/MD%E6%8F%92%E5%85%A5%E9%9F%B3%E9%A2%91%E8%A7%86%E9%A2%91/"/>
     <id>http://zhangyongfa888.site/2020/01/19/MD插入音频视频/</id>
     <published>2020-01-19T06:10:00.000Z</published>
-    <updated>2020-01-19T06:18:37.620Z</updated>
+    <updated>2020-01-19T06:30:17.625Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="插入音频"><a href="#插入音频" class="headerlink" title="插入音频"></a>插入音频</h4><pre><code>&lt;audio id=&quot;audio&quot; controls=&quot;&quot; preload=&quot;none&quot;&gt;&lt;source id=&quot;mp3&quot; src=&quot;https://sz-sycdn.kuwo.cn/044d4cd10fc3e11fd1973669f7445b3f/5e23f497/resource/n1/68/38/37304574.mp3&quot;&gt;&lt;/audio&gt;</code></pre><audio id="audio" controls preload="none"><source id="mp3" src="http://qiniu.cloud.fandong.me/Music_iP%E8%B5%B5%E9%9C%B2%20-%20%E7%A6%BB%E6%AD%8C%20%28Live%29.mp3"></audio><h4 id="插入视频"><a href="#插入视频" class="headerlink" title="插入视频"></a>插入视频</h4><pre><code>&lt;video id=&quot;video&quot; controls=&quot;&quot; preload=&quot;none&quot; poster=&quot;http://img.blog.fandong.me/2017-08-26-Markdown-Advance-Video.jpg&quot;&gt;  &lt;source id=&quot;mp4&quot; src=&quot;http://img.blog.fandong.me/2017-08-26-Markdown-Advance-Video.mp4&quot; type=&quot;video/mp4&quot;&gt;  &lt;/video&gt;</code></pre><video id="video" controls preload="none" poster="http://img.blog.fandong.me/2017-08-26-Markdown-Advance-Video.jpg">      <source id="mp4" src="http://img.blog.fandong.me/2017-08-26-Markdown-Advance-Video.mp4" type="video/mp4">      </video>]]></content>
+    <content type="html"><![CDATA[<h4 id="插入音频"><a href="#插入音频" class="headerlink" title="插入音频"></a>插入音频</h4><pre><code>&lt;audio id=&quot;audio&quot; controls=&quot;&quot; preload=&quot;none&quot;&gt;  &lt;source id=&quot;mp3&quot;src=&quot;https://sz-sycdn.kuwo.cn/4591311c3897b5be364a4a61fa5c0ee0/5e23f572/resource/n2/83/56/3583003746.mp3&quot;&gt;  &lt;/audio&gt;</code></pre><audio id="audio" controls preload="none">      <source id="mp3" src="https://sz-sycdn.kuwo.cn/4591311c3897b5be364a4a61fa5c0ee0/5e23f572/resource/n2/83/56/3583003746.mp3">      </audio><h4 id="插入视频"><a href="#插入视频" class="headerlink" title="插入视频"></a>插入视频</h4><pre><code>&lt;video id=&quot;video&quot; controls=&quot;&quot; preload=&quot;none&quot; poster=&quot;http://img.blog.fandong.me/2017-08-26-Markdown-Advance-Video.jpg&quot;&gt;  &lt;source id=&quot;mp4&quot; src=&quot;http://img.blog.fandong.me/2017-08-26-Markdown-Advance-Video.mp4&quot; type=&quot;video/mp4&quot;&gt;  &lt;/video&gt;</code></pre><video id="video" controls preload="none" poster="http://img.blog.fandong.me/2017-08-26-Markdown-Advance-Video.jpg">      <source id="mp4" src="http://img.blog.fandong.me/2017-08-26-Markdown-Advance-Video.mp4" type="video/mp4">      </video>]]></content>
     
     <summary type="html">
     
