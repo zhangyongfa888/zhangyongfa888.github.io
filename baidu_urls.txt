@@ -1,3 +1,4 @@
+http://zhangyongfa888.site/2020/01/19/一个简单的进度条实现/
 http://zhangyongfa888.site/2019/12/23/小程序云函数初体验/
 http://zhangyongfa888.site/2019/12/20/对一点英语进行破解（xp模块）/
 http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/
@@ -7,4 +8,3 @@ http://zhangyongfa888.site/2019/11/04/Tinker集成/
 http://zhangyongfa888.site/2019/09/09/测试点击事件/
 http://zhangyongfa888.site/2019/08/28/Android唯一识别码-获取/
 http://zhangyongfa888.site/2019/08/23/Awesome-android-tips/
-http://zhangyongfa888.site/2019/07/30/滴滴插件化实践/
