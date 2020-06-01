@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhangyongfa888.site/"/>
-  <updated>2020-05-25T06:15:40.405Z</updated>
+  <updated>2020-06-01T08:39:30.388Z</updated>
   <id>http://zhangyongfa888.site/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SWIFT传值</title>
+    <link href="http://zhangyongfa888.site/2020/06/01/SWIFT%E4%BC%A0%E5%80%BC/"/>
+    <id>http://zhangyongfa888.site/2020/06/01/SWIFT传值/</id>
+    <published>2020-06-01T08:21:00.000Z</published>
+    <updated>2020-06-01T08:39:30.388Z</updated>
+    
+    <content type="html"><![CDATA[<p>参考：swift–四种传值(代理、闭包、属性、通知)<br><a href="https://www.cnblogs.com/adampei-bobo/p/8954042.html" target="_blank" rel="noopener">https://www.cnblogs.com/adampei-bobo/p/8954042.html</a></p><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>场景：比如从A携带参数到B</p><p>如图B中需要获取前一页携带的参数</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://res.zhangyongfa888.site/1590999826040iz9lbu92.png?imageslim" alt="B页面" title>                </div>                <div class="image-caption">B页面</div>            </figure><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://res.zhangyongfa888.site/1590999874776k619d3qf.png?imageslim" alt="A页面" title>                </div>                <div class="image-caption">A页面</div>            </figure><h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p>类型android的接口</p><p>例：<br>第一步:</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://res.zhangyongfa888.site/15909999651305ud6bmlh.png?imageslim" alt="创建代理" title>                </div>                <div class="image-caption">创建代理</div>            </figure><p>第二步:在需要传值的地方传值</p><pre><code>MySecondViewController().CallBack(back: &quot;123&quot;)</code></pre><h3 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h3><p>安卓中的广播</p><p>1.注册通知    </p><pre><code>NotificationCenter.default.addObserver(self, selector: #selector(endTopicAction(obj:)), name: NSNotification.Name.init(&quot;11&quot;), object: nil)</code></pre><p>2.添加收到通知后的事件</p><pre><code>@objc func endTopicAction(obj:Notification){      print(&quot;--------&quot;,obj.object!)}</code></pre><p>3.发送</p><pre><code>let  a = [[&quot;A&quot;:&quot;aaa&quot;],[&quot;B&quot;:&quot;bbb&quot;]]    NotificationCenter.default.post(name:     NSNotification.Name.EndTopicSuccessNoti, object: a)</code></pre><p>4.在注册页要注销</p><pre><code>deinit {    NotificationCenter.default.removeObserver(self)}</code></pre><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><pre><code>func testClosure(res:()-&gt;()){    res()}func testClosure(arg1:String,res:()-&gt;()) {    res()}func testClosure(arg1:String,res:(String)-&gt;()) {    res(arg1)}func testClosure(arg1:String,res:(String,String)-&gt;()) {    res(arg1,&quot;111&quot;)}func testClosure(arg1:String,res:(String)-&gt;(Bool)) {    let b =   res(arg1)    print(&quot;test4 return :&quot;,b)//return false}func testClosure(arg1:String,res:(String,String)-&gt;(Bool,Bool)) {    let b = res(arg1,&quot;222&quot;)    print(&quot;test5 return :&quot;,b.0,b.1)//return true false}</code></pre><p>   测试样例</p><pre><code> testClosure(arg1: &quot;test1&quot;) { print(&quot;test1:无返回值&quot;) } //最后一个参数时候 可以尾随闭包 testClosure { } testClosure(){ } //不是尾随闭包 testClosure(res: { }) let block:(String,String)-&gt;() = {     res1 ,res2 in print(res1,res2) } testClosure(arg1: &quot;aa&quot;, res: block) testClosure(arg1: &quot;test2&quot;) { (result) in print(&quot;test2:&quot;,result) } testClosure(arg1: &quot;test3&quot;) { (res1, res2) in     print(&quot;test3:&quot;,res1,res2) } testClosure(arg1: &quot;test4&quot;) { (res3) -&gt; (Bool) in print(&quot;test4:&quot;,res3) return false } testClosure(arg1: &quot;test5&quot;) { (res4, res5) -&gt; (Bool, Bool) in print(&quot;test5:&quot;,res4,res5) return (true,false) } // //    test1:无返回值 //    test2: test2 //    test3: test3 111 //    test4: test4 //    test4 return : false//    test5: test5 222//    test5 return : true false //    print({&quot;1&quot; &quot;2&quot; in &quot;1&quot;+&quot;2&quot;})</code></pre><p>   类似block用法</p><pre><code> A页面let vc = DetailsViewController();vc.block = {    a1,a3 in    print(&quot;22222222222&quot;,a1,a3)}B页面（DetailsViewController） var block:((String,String)-&gt;())? block?(&quot;12&quot;,  &quot;we&quot;)</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;参考：swift–四种传值(代理、闭包、属性、通知)&lt;br&gt;&lt;a href=&quot;https://www.cnblogs.com/adampei-bobo/p/8954042.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cn
+      
+    
+    </summary>
+    
+      <category term="swift" scheme="http://zhangyongfa888.site/categories/swift/"/>
+    
+    
+      <category term="ios" scheme="http://zhangyongfa888.site/tags/ios/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS初探</title>
@@ -500,27 +525,6 @@
     
     
       <category term="互联网" scheme="http://zhangyongfa888.site/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://zhangyongfa888.site/2019/07/09/hello-world/"/>
-    <id>http://zhangyongfa888.site/2019/07/09/hello-world/</id>
-    <published>2019-07-09T07:09:38.366Z</published>
-    <updated>2019-07-09T07:09:38.366Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-    
-    </summary>
-    
     
   </entry>
   
