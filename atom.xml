@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhangyongfa888.site/"/>
-  <updated>2020-06-01T08:39:30.388Z</updated>
+  <updated>2020-06-18T02:10:37.559Z</updated>
   <id>http://zhangyongfa888.site/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>flutter初探</title>
+    <link href="http://zhangyongfa888.site/2020/06/18/flutter%E5%88%9D%E6%8E%A2/"/>
+    <id>http://zhangyongfa888.site/2020/06/18/flutter初探/</id>
+    <published>2020-06-18T01:20:00.000Z</published>
+    <updated>2020-06-18T02:10:37.559Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="极速构建漂亮的原生应用"><a href="#极速构建漂亮的原生应用" class="headerlink" title="极速构建漂亮的原生应用"></a>极速构建漂亮的原生应用</h4><p>Flutter是谷歌的移动UI框架，可以快速在iOS和Android上构建高质量的原生用户界面。 Flutter可以与现有的代码一起工作。在全世界，Flutter正在被越来越多的开发者和组织使用，并且Flutter是完全免费、开源的。</p><h5 id="快速开发"><a href="#快速开发" class="headerlink" title="快速开发"></a>快速开发</h5><p>毫秒级的热重载，修改后，您的应用界面会立即更新。使用丰富的、完全可定制的widget在几分钟内构建原生界面。</p><h5 id="富有表现力和灵活的UI"><a href="#富有表现力和灵活的UI" class="headerlink" title="富有表现力和灵活的UI"></a>富有表现力和灵活的UI</h5><p>快速发布聚焦于原生体验的功能。分层的架构允许您完全自定义，从而实现难以置信的快速渲染和富有表现力、灵活的设计。</p><h5 id="原生性能"><a href="#原生性能" class="headerlink" title="原生性能"></a>原生性能</h5><p>Flutter包含了许多核心的widget，如滚动、导航、图标和字体等，这些都可以在iOS和Android上达到原生应用一样的性能。</p><h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><h5 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h5><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://res.zhangyongfa888.site/1592444587893oanpqkgx.png?imageslim" alt="结构" title>                </div>                <div class="image-caption">结构</div>            </figure><p>android:android的工程目录</p><p>assets：自己创建的资源文件夹 在pubspec.yaml中添加下位置</p><p>ios：ios的工程目录</p><p>lib：flutter代码目录</p><p>pubspec.yaml：配置文件 常用的就是引用第三方库</p><pre><code>dependencies:  flutter:    sdk: flutter  cupertino_icons: ^0.1.3  http: &apos;&gt;=0.11.3+12&apos;  flutter_swiper: ^1.1.6  fluttertoast: ^3.0.3 assets:- assets/images/</code></pre><p>assets是创建的资源目录的路径。修改完配置文件要put get 一下完成同步</p><h4 id="demo文件"><a href="#demo文件" class="headerlink" title="demo文件"></a>demo文件</h4><p>main.dart<br>编写的入口文件 其中包括 入口代码</p><pre><code>void main() {  runApp(MyApp());}</code></pre><p>runApp需要的参数是一个    Widget</p><pre><code>void runApp(Widget app) {  WidgetsFlutterBinding.ensureInitialized()..scheduleAttachRootWidget(app)..scheduleWarmUpFrame();}</code></pre><p>widget可以理解为android中的View</p><h4 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h4><p>1.状态栏高度和颜色<br>颜色透明   </p><pre><code>SystemUiOverlayStyle systemUiOverlayStyle =    SystemUiOverlayStyle(statusBarColor: Colors.transparent);SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);</code></pre><p>高度获取</p><pre><code>final double statusBarHeight = MediaQuery.of(context).padding.top;</code></pre><p>2.组合view排列方式</p><p>Column垂直排列</p><p>Row水平排列</p><p>Column/Row 继承自Flex</p><p>所以也可以使用flex 并配置 </p><pre><code>direction: Axis.vertical</code></pre><p>3.视图圆角</p><pre><code>Container(         height: 40,         width: 40,         decoration: new BoxDecoration(             color: bgColor,             borderRadius: BorderRadius.all(Radius.circular(10))),       ),</code></pre><p>  color在decoration中设置了就不能在Container中设置了</p><p>4.frame布局使用Stack</p><pre><code>Stack(      alignment: Alignment.center,      children: [        Container(          height: 40,          width: 40,          decoration: new BoxDecoration(              color: bgColor,              borderRadius: BorderRadius.all(Radius.circular(10))),        ),        Text(          title.substring(0, 1),          style: TextStyle(color: Colors.white, fontSize: 15),        ),      ],</code></pre><p>5.控件可点击包一层InkWell (onTap事件)或者FlatButton（onPress事件）</p><p>6.GridView设置包裹的高度防止滑动冲突</p><pre><code>shrinkWrap: true,</code></pre><p>7.高度太长设置可以滑动 包一层SingleChildScrollView</p><p>8.一些常量都在constants.dart里</p><h4 id="仿oa"><a href="#仿oa" class="headerlink" title="仿oa"></a>仿oa</h4><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://res.zhangyongfa888.site/1592446175204xfjxh04x.png?imageslim" alt="首页" title>                </div>                <div class="image-caption">首页</div>            </figure><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://res.zhangyongfa888.site/1592446205066mcwa2do9.png?imageslim" alt="第二页" title>                </div>                <div class="image-caption">第二页</div>            </figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;极速构建漂亮的原生应用&quot;&gt;&lt;a href=&quot;#极速构建漂亮的原生应用&quot; class=&quot;headerlink&quot; title=&quot;极速构建漂亮的原生应用&quot;&gt;&lt;/a&gt;极速构建漂亮的原生应用&lt;/h4&gt;&lt;p&gt;Flutter是谷歌的移动UI框架，可以快速在iOS和Android
+      
+    
+    </summary>
+    
+      <category term="Flutter" scheme="http://zhangyongfa888.site/categories/Flutter/"/>
+    
+    
+      <category term="Flutter" scheme="http://zhangyongfa888.site/tags/Flutter/"/>
+    
+  </entry>
   
   <entry>
     <title>SWIFT传值</title>
@@ -504,31 +529,6 @@
     
     
       <category term="Android" scheme="http://zhangyongfa888.site/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>滴滴调整北京市网约车价格 将16区按计价标准划分为5大类</title>
-    <link href="http://zhangyongfa888.site/2019/07/10/HEXO-Admin/"/>
-    <id>http://zhangyongfa888.site/2019/07/10/HEXO-Admin/</id>
-    <published>2019-07-10T02:57:00.000Z</published>
-    <updated>2019-09-03T00:23:11.641Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="滴滴调整北京市网约车价格-将16区按计价标准划分为5大类"><a href="#滴滴调整北京市网约车价格-将16区按计价标准划分为5大类" class="headerlink" title="滴滴调整北京市网约车价格 将16区按计价标准划分为5大类"></a>滴滴调整北京市网约车价格 将16区按计价标准划分为5大类</h4><p>本报讯（记者 陈雪柠）针对不同时间的需求状况，滴滴将对本市网约车价格进行调整。昨天，滴滴出行发布本市滴滴网约车价格调整说明，宣布自7月11日起，滴滴网约车将根据区域进行价格调整。</p><p>　　滴滴将全市16区按计价标准划分为5大类。其中，东城区、西城区、海淀区、朝阳区、丰台区、石景山区、昌平区、门头沟区为一类，顺义区、通州区、大兴区、房山区为一类，密云区、怀柔区为一类，延庆区及平谷区则各自单独计价。</p><p>　　以东城区、西城区等区域计价标准看，调整后，工作日早6点至10点的早高峰时段，起步价由13元涨至14元，里程费由1.6元/公里涨至1.8元/公里，时长费不变；早10点至晚5点的平峰时段，里程费由1.6元/公里降至1.45元/公里，时长费由0.5元/公里降至0.4元/公里，起步价不变；晚5点至晚9点的晚高峰时段，起步价由13元涨至14元，里程费由1.6元/公里降至1.5元/公里，时长费不变；晚9点至早6点的夜间时段，起步价由13元涨至14元，里程费由1.6元/公里涨至2.15元/公里，时长费由1元降至0.8元/公里。</p><p>  <img src="http://res.zhangyongfa888.site/1562729905085rk2iy94h.png?imageslim" alt="paste image"><br>　　总体看，高峰时段价格普遍上涨，平峰时段价格有所降低。远郊区起步价降低，其中延庆区、平谷区起步价均为8元，密云区、怀柔区起步价也降低为11.5元。</p><p>　　对于价格调整的原因，滴滴出行表示是调节供需平衡，撮合司乘需求。“我们会基于不同城市不同时间的供需状况，并参考当地的消费水平、收入水平和能源价格等因素，合理地调整网约车价格。价格机制要满足乘客需求，还要让司机能获得合理的收入。”</p><p>　　滴滴建议市民合理安排行程尽量错峰出行；在高峰期用车可选择“同时呼叫”或拼车，提高出行效率；不好叫车时，可选择APP内单车或“公交”路线査询功能，选择其他出行方式。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;滴滴调整北京市网约车价格-将16区按计价标准划分为5大类&quot;&gt;&lt;a href=&quot;#滴滴调整北京市网约车价格-将16区按计价标准划分为5大类&quot; class=&quot;headerlink&quot; title=&quot;滴滴调整北京市网约车价格 将16区按计价标准划分为5大类&quot;&gt;&lt;/a&gt;滴滴
-      
-    
-    </summary>
-    
-      <category term="NEWS" scheme="http://zhangyongfa888.site/categories/NEWS/"/>
-    
-    
-      <category term="互联网" scheme="http://zhangyongfa888.site/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
     
   </entry>
   
