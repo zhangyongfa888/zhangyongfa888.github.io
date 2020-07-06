@@ -1,3 +1,4 @@
+http://zhangyongfa888.site/2020/07/06/博客背景音乐问题追查/
 http://zhangyongfa888.site/2020/07/03/酷q机器人实践/
 http://zhangyongfa888.site/2020/06/18/flutter初探/
 http://zhangyongfa888.site/2020/06/01/SWIFT传值/
@@ -7,4 +8,3 @@ http://zhangyongfa888.site/2020/03/04/SSM搭建（从入门到入门）/
 http://zhangyongfa888.site/2020/01/19/MD插入音频视频/
 http://zhangyongfa888.site/2020/01/19/一个简单的进度条实现/
 http://zhangyongfa888.site/2019/12/23/小程序云函数初体验/
-http://zhangyongfa888.site/2019/12/20/对一点英语进行破解（xp模块）/
