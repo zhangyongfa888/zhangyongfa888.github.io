@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhangyongfa888.site/"/>
-  <updated>2020-07-06T07:05:38.167Z</updated>
+  <updated>2020-07-06T07:23:23.481Z</updated>
   <id>http://zhangyongfa888.site/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://zhangyongfa888.site/2020/07/06/%E5%8D%9A%E5%AE%A2%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90%E9%97%AE%E9%A2%98%E8%BF%BD%E6%9F%A5/"/>
     <id>http://zhangyongfa888.site/2020/07/06/博客背景音乐问题追查/</id>
     <published>2020-07-06T06:57:00.000Z</published>
-    <updated>2020-07-06T07:05:38.167Z</updated>
+    <updated>2020-07-06T07:23:23.481Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h4><p>每次进入文章都是固定的背景音乐</p><h4 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h4><pre><code>是否开启toctoc: falsetoc:  list_number: true   music: [1459980094,29717271,30814948,863481092,485612576,31517407,424995317,38592976,427419509,1328382004,1305365717,25706282,416389005,490602642,26494530,1451141290,1434356520,1356367833,1395338980,1390519535,1379517878,1449871979,1441777485]  urls: [http://www.zhaixiaoou.com/]  urlsDesc: [zhaixiaoou-小锡兵鸥]</code></pre><p> 之前是写在配置中，在TOC(右侧级别分类中)显示播放器。</p><p> 排查过程中发现是由于<strong>ejs生成静态文件时候已经产生好随机数并给每一篇文章赋值好了播放地址。</strong></p><h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p> 1.使用js动态生成iframe以及随机播放地址</p><p> 2.生成的iframe插入到对应的节点下</p><p> <img src="http://res.zhangyongfa888.site/1594018940424k6r2td27.png?imageslim" alt="music.ejs"></p><p> 在任何地方只要引入ejs就能够自动播放网易外链音乐了~</p><p> 现在改到了评论上方~</p><p> <img src="http://res.zhangyongfa888.site/1594019032010geoa5xao.png?imageslim" alt="位置"></p>]]></content>
+    <content type="html"><![CDATA[<h4 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h4><p>每次进入文章都是固定的背景音乐</p><h4 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h4><pre><code>是否开启toctoc: falsetoc:  list_number: true   music: [1459980094,29717271,30814948,863481092,485612576,31517407,424995317,38592976,427419509,1328382004,1305365717,25706282,416389005,490602642,26494530,1451141290,1434356520,1356367833,1395338980,1390519535,1379517878,1449871979,1441777485]  urls: [http://www.zhaixiaoou.com/]  urlsDesc: [zhaixiaoou-小锡兵鸥]</code></pre><p> 之前是写在配置中，在TOC(右侧级别分类中)显示播放器。</p><p> 排查过程中发现是由于<strong>ejs生成静态文件时候已经产生好随机数并给每一篇文章赋值好了播放地址。</strong></p><h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p> 1.使用js动态生成iframe以及随机播放地址</p><p> 2.生成的iframe插入到对应的节点下</p><p> <img src="http://res.zhangyongfa888.site/1594018940424k6r2td27.png?imageslim" alt="music.ejs"></p><p> 在任何地方只要引入ejs就能够自动播放网易外链音乐了~</p><p> 现在改到了评论上方~</p><p> <img src="http://res.zhangyongfa888.site/1594019032010geoa5xao.png?imageslim" alt="位置"></p><hr><pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;http://res.zhangyongfa888.site/RandomMusic.js&quot;&gt;&lt;/script&gt;</code></pre><p> 使用js,方便更改歌曲连接~</p>]]></content>
     
     <summary type="html">
     

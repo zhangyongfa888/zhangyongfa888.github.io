@@ -57,7 +57,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://res.zhangyongfa888.site/1594018940424k6r2td27.png?imageslim">
 <meta property="og:image" content="http://res.zhangyongfa888.site/1594019032010geoa5xao.png?imageslim">
-<meta property="og:updated_time" content="2020-07-06T07:05:38.167Z">
+<meta property="og:updated_time" content="2020-07-06T07:23:23.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客背景音乐问题追查">
 <meta name="twitter:description" content="存在的问题每次进入文章都是固定的背景音乐 问题原因是否开启toc toc: false toc:   list_number: true    music: [1459980094,29717271,30814948,863481092,485612576,31517407,424995317,38592976,427419509,1328382004,1305365717,25706282,41">
@@ -279,6 +279,8 @@ toc:
 <p> 在任何地方只要引入ejs就能够自动播放网易外链音乐了~</p>
 <p> 现在改到了评论上方~</p>
 <p> <img src="http://res.zhangyongfa888.site/1594019032010geoa5xao.png?imageslim" alt="位置"></p>
+<hr>
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;http://res.zhangyongfa888.site/RandomMusic.js&quot;&gt;&lt;/script&gt;</code></pre><p> 使用js,方便更改歌曲连接~</p>
 
         </div>
 
@@ -287,7 +289,7 @@ toc:
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-06T07:05:38.167Z" itemprop="dateUpdated">2020-07-06 15:05:38</time>
+    最后更新时间：<time datetime="2020-07-06T07:23:23.481Z" itemprop="dateUpdated">2020-07-06 15:23:23</time>
 </span><br>
 
 
@@ -388,16 +390,7 @@ toc:
 
 
 <div id='music'></div>
-<script>
-    (function () {
-        var ids = [1459980094, 29717271, 30814948, 863481092, 485612576, 31517407, 424995317, 38592976, 427419509, 1328382004, 1305365717, 25706282, 416389005, 490602642, 26494530, 1451141290, 1434356520, 1356367833, 1395338980, 1390519535, 1379517878, 1449871979, 1441777485];
-        var mid =ids[Math.floor(Math.random() * ids.length)];
-        var element = document.getElementById("music");
-		element.innerHTML = '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% src="//music.163.com/outchain/player?type=2&id='+mid+'&auto=1&height=86"></iframe>';
-
-    })();
-
-</script>
+<script type="text/javascript" src="http://res.zhangyongfa888.site/RandomMusic.js"></script>
 
 
 
