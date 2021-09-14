@@ -1,3 +1,4 @@
+http://zhangyongfa888.site/2021/09/14/PythonUI/
 http://zhangyongfa888.site/2020/10/13/微信公众号斗图/
 http://zhangyongfa888.site/2020/10/13/Flutter搭建界面/
 http://zhangyongfa888.site/2020/07/06/博客背景音乐问题追查/
@@ -7,4 +8,3 @@ http://zhangyongfa888.site/2020/06/01/SWIFT传值/
 http://zhangyongfa888.site/2020/05/25/iOS初探/
 http://zhangyongfa888.site/2020/04/08/项目整理/
 http://zhangyongfa888.site/2020/03/04/SSM搭建（从入门到入门）/
-http://zhangyongfa888.site/2020/01/19/MD插入音频视频/
