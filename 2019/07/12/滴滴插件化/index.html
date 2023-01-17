@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+	<script type="text/javascript" src="/js/love.js"></script>
+	<script type="text/javascript" src="/js/baiduziyuan.js"></script>
+	<script type="text/javascript" src="/js/random.js"></script>
+
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?6e8ed41c9b3e5150dfe169447c30ea4d"></script>
+<!-- End Baidu Tongji -->
+
+
+
+<!-- Baidu Push -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- End Baidu Push -->
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>滴滴插件化 | WE ARE YOUNG | So let&#39;s set the world on fire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="插件开发规范 V1.0.1由于VirtualAPK本身的特性，插件需要遵循以下规范： 1.宿主配置Project build.gradle  classpath &amp;apos;com.didi.virtualapk:gradle:0.9.0&amp;apos; `&amp;lt;/pre&amp;gt;  Module build.gradle  &amp;lt;pre&amp;gt;`apply plugin: &amp;apos;com.di">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="滴滴插件化">
+<meta property="og:url" content="http://zhangyongfa888.site/2019/07/12/滴滴插件化/index.html">
+<meta property="og:site_name" content="WE ARE YOUNG">
+<meta property="og:description" content="插件开发规范 V1.0.1由于VirtualAPK本身的特性，插件需要遵循以下规范： 1.宿主配置Project build.gradle  classpath &amp;apos;com.didi.virtualapk:gradle:0.9.0&amp;apos; `&amp;lt;/pre&amp;gt;  Module build.gradle  &amp;lt;pre&amp;gt;`apply plugin: &amp;apos;com.di">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/XDBHTMS.png">
+<meta property="og:updated_time" content="2019-09-03T00:25:09.957Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="滴滴插件化">
+<meta name="twitter:description" content="插件开发规范 V1.0.1由于VirtualAPK本身的特性，插件需要遵循以下规范： 1.宿主配置Project build.gradle  classpath &amp;apos;com.didi.virtualapk:gradle:0.9.0&amp;apos; `&amp;lt;/pre&amp;gt;  Module build.gradle  &amp;lt;pre&amp;gt;`apply plugin: &amp;apos;com.di">
+<meta name="twitter:image" content="https://i.imgur.com/XDBHTMS.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="WE ARE YOUNG" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zhangyongfa</h5>
+          <a href="mailto:1399142039@qq.com" title="1399142039@qq.com" class="mail">1399142039@qq.com</a>
+        </hgroup>
+      </div>
+	
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                全部
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhangyongfa888" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.facebook.com/profile.php?id=100010579066716" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/zhangyongfa888" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://t.me/joinchat/AAAAAEJricBW17-dsZbqew" target="_blank" >
+                <i class="icon icon-lg icon-telegram"></i>
+                Telegram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/7125015766" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/share" target="_blank" >
+                <i class="icon icon-lg icon-music"></i>
+                日常
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+	
+	
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">滴滴插件化</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">滴滴插件化</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-12T00:56:00.000Z" itemprop="datePublished" class="page-time">
+  2019-07-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/插件化/">插件化</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#插件开发规范-V1-0-1"><span class="post-toc-number">1.</span> <span class="post-toc-text">插件开发规范 V1.0.1</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-宿主配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">1.宿主配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-插件配置"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.插件配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-构建环境"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">3.构建环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-打包"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">4.打包</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#插件调用宿主"><span class="post-toc-number">3.</span> <span class="post-toc-text">插件调用宿主</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#插件中包含-so-包需特别注意"><span class="post-toc-number">4.</span> <span class="post-toc-text">插件中包含 so 包需特别注意</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#资源链接"><span class="post-toc-number">5.</span> <span class="post-toc-text">资源链接</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#来自VirtualAPK开发群-点击链接加入群聊【VirtualAPK】："><span class="post-toc-number">5.0.0.0.0.1.</span> <span class="post-toc-text">来自VirtualAPK开发群 点击链接加入群聊【VirtualAPK】：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+   
+        <h4 class="post-nav">友情链接</h4>
+
+        
+           <a class="post-toc-child" style="margin-left:20px" target="view_window" href="http://www.zhaixiaoou.com/">zhaixiaoou-小锡兵鸥</a>
+           <br> <br>
+        
+
+     <img src="https://tool.lu/netcard/">
+
+    </nav>
+</aside>
+
+
+
+<article id="post-滴滴插件化"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">滴滴插件化</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-12 08:56:00" datetime="2019-07-12T00:56:00.000Z"  itemprop="datePublished">2019-07-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/插件化/">插件化</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="插件开发规范-V1-0-1"><a href="#插件开发规范-V1-0-1" class="headerlink" title="插件开发规范 V1.0.1"></a>插件开发规范 V1.0.1</h1><p>由于VirtualAPK本身的特性，插件需要遵循以下规范：</p>
+<h1 id="1-宿主配置"><a href="#1-宿主配置" class="headerlink" title="1.宿主配置"></a>1.宿主配置</h1><p>Project build.gradle</p>
+<pre><code> classpath &apos;com.didi.virtualapk:gradle:0.9.0&apos;
+`&lt;/pre&gt;
+
+Module build.gradle
+
+&lt;pre&gt;`apply plugin: &apos;com.didi.virtualapk.host&apos;
+compile &apos;com.didi.virtualapk:core:0.9.0&apos;
+`&lt;/pre&gt;</code></pre><h2 id="2-插件配置"><a href="#2-插件配置" class="headerlink" title="2.插件配置"></a>2.插件配置</h2><p>插件 Project  build.gradle 文件中，需要加入如下引用：</p>
+<pre><code>classpath &apos;com.didi.virtualapk:gradle:0.9.0&apos;</code></pre><p>注：版本号应与宿主版本号相同</p>
+<p>插件 Module   build.gradle 文件中，需要加入如下引用：</p>
+<pre><code>apply plugin: &apos;com.didi.virtualapk.plugin&apos;
+virtualApk     { 
+    packageId = 0x6f // 插件资源id，避免资源id冲突 
+    targetHost=&apos;../host/app&apos;// 宿主工程的路径 
+    applyHostMapping = true // 插件编译时是否启用应用宿主的apply mapping 默认为true
+}</code></pre><h2 id="3-构建环境"><a href="#3-构建环境" class="headerlink" title="3.构建环境"></a>3.构建环境</h2><p>   官方构建环境建议：</p>
+<p>   <strong>框架强依赖构建环境。如果更换构建环境，可能会出现问题</strong></p>
+<pre><code>Gradle                   2.14.1
+
+com.android.tools.build  2.1.3
+
+即：插件 Project  build.gradle 文件中
+
+classpath &apos;com.android.tools.build:gradle:2.1.3&apos;
+
+插件gradle-wrapper.properties文件中：
+
+distributionUrl=https\://services.gradle.org/distributions/gradle-2.14.1-all.zip</code></pre><h2 id="4-打包"><a href="#4-打包" class="headerlink" title="4.打包"></a>4.打包</h2><p>  插件打包时，应当用命令<br>    <code>./gradlew clen assemblePlugin</code><br>    或者 <code>gradle clean assemblePlugin</code> 进行打包</p>
+<p>   输出位置为：<strong>app\build\outputs\plugin\release</strong></p>
+<p>   由于插件 Module   build.gradle 文件中设置了如下参数，<br>    targetHost=’../host/app’// 宿主工程的路径<br>    故，打包时的文件结构应为：<br>    <img src="https://i.imgur.com/XDBHTMS.png" alt></p>
+<p>   即：HOST 应与插件在同一目录下编译</p>
+<h1 id="插件调用宿主"><a href="#插件调用宿主" class="headerlink" title="插件调用宿主"></a>插件调用宿主</h1><p>   将宿主中需要被插件调用的 模块、类，下沉到公共组件库。</p>
+<p>   即：以aar包的形式。分别被插件，组件依赖即可。</p>
+<p>   aar 引入模板：</p>
+<pre><code>compile(group:&apos;test&apos;, name: &apos;app-release&apos;, version:&apos;0.2&apos;, ext: &apos;aar&apos;)</code></pre><h1 id="插件中包含-so-包需特别注意"><a href="#插件中包含-so-包需特别注意" class="headerlink" title="插件中包含 so 包需特别注意"></a>插件中包含 so 包需特别注意</h1><p>如果插件中包含如百度地图等 so 包，由于部分第三方库存在的包名校验机制，需要注册一份新的 secretKey 写到宿主中,这个不难理解，因为运行时包名是宿主的包名，不能通过校验。</p>
+<h1 id="资源链接"><a href="#资源链接" class="headerlink" title="资源链接"></a>资源链接</h1><p>我的踩坑记录 <a href="https://blog.csdn.net/a31081314/article/details/82661009" title="踩坑实录" target="_blank" rel="noopener">https://blog.csdn.net/a31081314/article/details/82661009</a></p>
+<p>我的demo 地址 <a href="https://github.com/CD3108/VirtualAPK" target="_blank" rel="noopener">https://github.com/CD3108/VirtualAPK</a></p>
+<p>源码地址 <a href="https://github.com/didi/VirtualAPK" title="源码地址" target="_blank" rel="noopener">https://github.com/didi/VirtualAPK</a></p>
+<p>详细框架接入 <a href="https://www.jianshu.com/p/013510c19391" title="框架接入" target="_blank" rel="noopener">https://www.jianshu.com/p/013510c19391</a></p>
+<p>四大组件加载过程 <a href="https://mp.weixin.qq.com/s?__biz=MzAxMTI4MTkwNQ==&amp;mid=2650823488&amp;idx=1&amp;sn=2976c8ddc0c206149b14c527260f7766&amp;chksm=80b78fdeb7c006c8a9585db794c51e799049ec50d23c4d738c78d77454f6b0291227a00e2def&amp;mpshare=1&amp;scene=1&amp;srcid=0712oTUswGWi172UK0Azpg4i&amp;key=8652b956ca1971a47b1e263b435230c7469d30646ddbe6ce2fb781033d6eba5215c9fd7e5eaf0bd73dd5da279b32dd901261d5e55bf32997bc333ad8a059e095e2193a5baa805447fc49cd315fca4404&amp;ascene=0&amp;uin=MTI0NjM4NTEyMA%3D%3D&amp;devicetype=iMac+MacBookPro11%2C4+OSX+OSX+10.11.1+build(15B42)&amp;version=12010110&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=mswE9bS3QeCxTOoepaUWh9VXHxeYMosdkHkAydyR09JHQkVe%2BAJHCCnPQrRpBfQN" title="四大组件" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzAxMTI4MTkwNQ==&amp;mid=2650823488&amp;idx=1&amp;sn=2976c8ddc0c206149b14c527260f7766&amp;chksm=80b78fdeb7c006c8a9585db794c51e799049ec50d23c4d738c78d77454f6b0291227a00e2def&amp;mpshare=1&amp;scene=1&amp;srcid=0712oTUswGWi172UK0Azpg4i&amp;key=8652b956ca1971a47b1e263b435230c7469d30646ddbe6ce2fb781033d6eba5215c9fd7e5eaf0bd73dd5da279b32dd901261d5e55bf32997bc333ad8a059e095e2193a5baa805447fc49cd315fca4404&amp;ascene=0&amp;uin=MTI0NjM4NTEyMA%3D%3D&amp;devicetype=iMac+MacBookPro11%2C4+OSX+OSX+10.11.1+build(15B42)&amp;version=12010110&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=mswE9bS3QeCxTOoepaUWh9VXHxeYMosdkHkAydyR09JHQkVe%2BAJHCCnPQrRpBfQN</a></p>
+<p>资源加载过程 <a href="https://www.notion.so/VirtualAPK-1fce1a910c424937acde9528d2acd537" title="资源加载过程" target="_blank" rel="noopener">https://www.notion.so/VirtualAPK-1fce1a910c424937acde9528d2acd537</a></p>
+<h6 id="来自VirtualAPK开发群-点击链接加入群聊【VirtualAPK】："><a href="#来自VirtualAPK开发群-点击链接加入群聊【VirtualAPK】：" class="headerlink" title="来自VirtualAPK开发群 点击链接加入群聊【VirtualAPK】："></a><a href="https://jq.qq.com/?_wv=1027&k=5J39bhD" target="_blank" rel="noopener">来自VirtualAPK开发群 点击链接加入群聊【VirtualAPK】：</a></h6>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-09-03T00:25:09.957Z" itemprop="dateUpdated">2019-09-03 08:25:09</time>
+</span><br>
+
+
+        
+        (侵删)转载注明链接：<a href="/2019/07/12/滴滴插件化/" target="_blank" rel="external">http://zhangyongfa888.site/2019/07/12/滴滴插件化/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://zhangyongfa888.site">
+            <img src="/img/avatar.jpg" alt="zhangyongfa">
+            zhangyongfa
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://zhangyongfa888.site/2019/07/12/滴滴插件化/&title=《滴滴插件化》 — WE ARE YOUNG&pic=http://zhangyongfa888.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://zhangyongfa888.site/2019/07/12/滴滴插件化/&title=《滴滴插件化》 — WE ARE YOUNG&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://zhangyongfa888.site/2019/07/12/滴滴插件化/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《滴滴插件化》 — WE ARE YOUNG&url=http://zhangyongfa888.site/2019/07/12/滴滴插件化/&via=http://zhangyongfa888.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://zhangyongfa888.site/2019/07/12/滴滴插件化/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/07/30/滴滴插件化实践/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">滴滴插件化实践</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/10/Markdown基本语法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Markdown基本语法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+<div id='music'></div>
+<script type="text/javascript" src="https://zhangyongfa888.site/api/RandomMusic.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "PWpkfff1WSoRsr13I9f2WfH3-gzGzoHsz",
+            appKey: "x4tMCz9Cs2iUuXk3vFpr97E1",
+            avatar: "monsterid",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+
+	
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <!-- 
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span> </span> -->
+            <br>
+            <p id="hitokoto" >:D 获取中...</p>
+
+        </p>
+
+    </div>
+    <div class="bottom">
+        <p><span>zhangyongfa &copy; 2018 - 2023</span>
+            <span>
+                
+                <a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备17033377号</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://zhangyongfa888.site/2019/07/12/滴滴插件化/&title=《滴滴插件化》 — WE ARE YOUNG&pic=http://zhangyongfa888.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://zhangyongfa888.site/2019/07/12/滴滴插件化/&title=《滴滴插件化》 — WE ARE YOUNG&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://zhangyongfa888.site/2019/07/12/滴滴插件化/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《滴滴插件化》 — WE ARE YOUNG&url=http://zhangyongfa888.site/2019/07/12/滴滴插件化/&via=http://zhangyongfa888.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://zhangyongfa888.site/2019/07/12/滴滴插件化/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3a246CQBAFwP3/n3ZfN1HxnB7chKF4MgIyhUmnL/PzEx+PN8ffs8fXP5999/n5+tMODAyMyzIeh0fygOT7/PeTu148EQMD4waMZBHvSO2VefguXhwGBgbGYXp3/DtJRpc/FwMDAyMPuGcVt3kox8DAwDhrQW1BOyt9MTAw7sZoE7j//PyV+QYGBsalGI/yaNO19t7ZgYGBsTcjD3D5ULNFJpszkvVgYGDszWiTwrxNljfp8pB9Wm6LgYFxKcYs2M02YXzjRWBgYNyBMWt+zRZ9/MpmRS8GBsbejGQp7ZizLXTb8eSHriEGBsZ2jFnSljTXzm2rLQ0yMTAwLs7Il5s3/dvQ2aaGL85iYGDchnHWpofjb5KRZ5uqYmBg3IFx1kCxvXclHNflKwYGxsUZbdqXwGbgPCgXS8TAwLg4oy0dkwI1GTrmgX64ZwQDA2M7xnHi1Y4hZ5ikoB1OOTAwMDZi5AlinjLONmHMhhMYGBh7M9pEcEZdebtFUoiBgbE1Y3242P7ObKvZ2xeKgYFxS8asGRcNHZcL6SLgYmBgbMqYpYMrLbm8rVYEXAwMjC0Ysy2qbZhOAEmiGf0PGBgY2zHWB5xLkb68Pmq6YWBgbMpY2aq1MklsS98PjTwMDIwbMM4qUNvCtQ3ixSQWAwPj9oz2mpUEMboLAwMDowyveQrYBvcPRSwGBsbWjKSIbZPF9bQyH4hiYGDszWib+3ny104nkrJ2aZCJgYFxPcYvOBrbGS0WbRYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script async src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '草榴社區-t66y.com ...';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"tagMode":false});</script></body>
+</html>
