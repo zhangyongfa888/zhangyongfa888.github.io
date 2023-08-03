@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+	<script type="text/javascript" src="/js/love.js"></script>
+	<script type="text/javascript" src="/js/baiduziyuan.js"></script>
+	<script type="text/javascript" src="/js/random.js"></script>
+
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?6e8ed41c9b3e5150dfe169447c30ea4d"></script>
+<!-- End Baidu Tongji -->
+
+
+
+<!-- Baidu Push -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- End Baidu Push -->
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>使用反射和插件化实现实现对宿主更新 | WE ARE YOUNG STILL... | So let&#39;s set the world on fire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="背景对于先有项目，没有集成热更新功能，但是集成了滴滴的插件化。唯一的缺陷就是无法在不更新宿主的情况下对宿主进行更新。 解决方案还好在打开宿主时候的splash页和main页进行了加载了一个备用插件，可以在这个备用插件中进行操作。splash中的代码，在首页加载push插件，原计划此插件是针对不同的手机厂商集成不同的第三方推送，现在正好可修复宿主。 Class cl = plugin.getClas">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用反射和插件化实现实现对宿主更新">
+<meta property="og:url" content="http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/index.html">
+<meta property="og:site_name" content="WE ARE YOUNG STILL...">
+<meta property="og:description" content="背景对于先有项目，没有集成热更新功能，但是集成了滴滴的插件化。唯一的缺陷就是无法在不更新宿主的情况下对宿主进行更新。 解决方案还好在打开宿主时候的splash页和main页进行了加载了一个备用插件，可以在这个备用插件中进行操作。splash中的代码，在首页加载push插件，原计划此插件是针对不同的手机厂商集成不同的第三方推送，现在正好可修复宿主。 Class cl = plugin.getClas">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://res.zhangyongfa888.site/15764614050129jii4u3w.png?imageslim">
+<meta property="og:image" content="http://res.zhangyongfa888.site/1576461670707y1zhwrus.png?imageslim">
+<meta property="og:updated_time" content="2020-03-04T07:52:54.764Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用反射和插件化实现实现对宿主更新">
+<meta name="twitter:description" content="背景对于先有项目，没有集成热更新功能，但是集成了滴滴的插件化。唯一的缺陷就是无法在不更新宿主的情况下对宿主进行更新。 解决方案还好在打开宿主时候的splash页和main页进行了加载了一个备用插件，可以在这个备用插件中进行操作。splash中的代码，在首页加载push插件，原计划此插件是针对不同的手机厂商集成不同的第三方推送，现在正好可修复宿主。 Class cl = plugin.getClas">
+<meta name="twitter:image" content="http://res.zhangyongfa888.site/15764614050129jii4u3w.png?imageslim">
+    
+        <link rel="alternate" type="application/atom+xml" title="WE ARE YOUNG STILL..." href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zhangyongfa</h5>
+          <a href="mailto:1399142039@qq.com" title="1399142039@qq.com" class="mail">1399142039@qq.com</a>
+        </hgroup>
+      </div>
+	
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                全部
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhangyongfa888" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.facebook.com/profile.php?id=100010579066716" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/zhangyongfa888" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://t.me/joinchat/AAAAAEJricBW17-dsZbqew" target="_blank" >
+                <i class="icon icon-lg icon-telegram"></i>
+                Telegram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/7125015766" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/share" target="_blank" >
+                <i class="icon icon-lg icon-music"></i>
+                日常
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+	
+	
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用反射和插件化实现实现对宿主更新</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用反射和插件化实现实现对宿主更新</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-16T01:49:00.000Z" itemprop="datePublished" class="page-time">
+  2019-12-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/插件化/">插件化</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/插件化/反射/">反射</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">解决方案</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决过程"><span class="post-toc-number">3.</span> <span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#其他修改"><span class="post-toc-number">4.</span> <span class="post-toc-text">其他修改</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#后记"><span class="post-toc-number">5.</span> <span class="post-toc-text">后记</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#参考链接"><span class="post-toc-number">6.</span> <span class="post-toc-text">参考链接</span></a></li></ol>
+   
+        <h4 class="post-nav">友情链接</h4>
+
+        
+           <a class="post-toc-child" style="margin-left:20px" target="view_window" href="http://www.zhaixiaoou.com/">zhaixiaoou-小锡兵鸥</a>
+           <br> <br>
+        
+
+     <img src="https://tool.lu/netcard/">
+
+    </nav>
+</aside>
+
+
+
+<article id="post-使用反射和插件化实现实现对宿主更新"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用反射和插件化实现实现对宿主更新</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-16 09:49:00" datetime="2019-12-16T01:49:00.000Z"  itemprop="datePublished">2019-12-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/插件化/">插件化</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/插件化/反射/">反射</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>对于先有项目，没有集成热更新功能，但是集成了滴滴的插件化。唯一的缺陷就是无法在不更新宿主的情况下对宿主进行更新。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>还好在打开宿主时候的splash页和main页进行了加载了一个备用插件，可以在这个备用插件中进行操作。<br>splash中的代码，在首页加载push插件，原计划此插件是针对不同的手机厂商集成不同的第三方推送，现在正好可修复宿主。</p>
+<pre><code>Class cl = plugin.getClassLoader().loadClass(&quot;***.huozhu.plugin_push.PushDispatch&quot;);
+                           Constructor ct = cl.getDeclaredConstructor(new Class[]{Context.class});
+                           AppIntent appIntent = (AppIntent) ct.newInstance(new Object[]{context});
+                           Intent intent = new Intent();
+                           intent.putExtra(&quot;from&quot;, &quot;splash&quot;);
+                           appIntent.startAppActivity(intent);</code></pre><p>main中的代码</p>
+<pre><code>LogUtils.e(&quot;plugin---&gt;&quot; + plugin.getPackageName());
+                Class cl = plugin.getClassLoader().loadClass(&quot;***.huozhu.plugin_push.PushDispatch&quot;);
+                Constructor ct = cl.getDeclaredConstructor(new Class[]{Context.class});
+                AppIntent appIntent = (AppIntent) ct.newInstance(new Object[]{context});
+                Intent intent = new Intent();
+                intent.putExtra(&quot;from&quot;, &quot;main&quot;);
+                appIntent.startAppActivity(intent);</code></pre><h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4><p>目前的需求是修改主页中菜单的数据，要求新添加一行数据</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://res.zhangyongfa888.site/15764614050129jii4u3w.png?imageslim" alt="push中的处理" title>
+                </div>
+                <div class="image-caption">push中的处理</div>
+            </figure>其中extra是处理推送的情况，小米推送（极光）点击无法弹出界面，所以需要自己重写通知。from用于区分来源。比如这次要修改主页的一行数据
+
+<p>先看下宿主代码，找到切入点：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://res.zhangyongfa888.site/1576461670707y1zhwrus.png?imageslim" alt="main代码" title>
+                </div>
+                <div class="image-caption">main代码</div>
+            </figure>宿主中 在这里对数据进行添加，是一个网络请求。考虑会有延时。所以有两个方案，一个是延时后添加一条，一个是hook网络请求，重写添加全部。可行性的话，1很简单，2过于繁琐。针对1方案，再考虑切入点。可以针对menuModels进行数据添加，也可对adapter进行数据添加。考虑到对集合添加后还需要adapter刷新，所以直接对adapter进行添加数据。
+
+<p>代码</p>
+<pre><code> private void setMenu() {
+    try {
+        Class menuModelClz = contextHost.getClassLoader().loadClass(&quot;****.huozhu.ep.model.MenuModel&quot;);
+        Constructor constructor = menuModelClz.getConstructor(new Class[]{int.class, boolean.class, String.class, int.class});
+        Object instance = constructor.newInstance(R.drawable.host_main_menu_driver_group, false, &quot;我的承运人&quot;, 7);
+        Field field = AppUtils.activities.get(0).getClass().getDeclaredField(&quot;adapter&quot;);
+        LogUtils.e(&quot;setMenu  field   &quot; + field.getClass().toString());
+        field.setAccessible(true);
+        BaseQuickAdapter adapter = (BaseQuickAdapter) field.get(AppUtils.activities.get(0));
+        if (adapter == null) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    setMenu();
+                }
+            }, 2000);
+        }
+        adapter.addData(2, instance);
+
+    } catch (Exception e) {
+        LogUtils.e(&quot;setMenu Error    &quot; + e.toString());
+    }
+}</code></pre><p>  这样就对宿主进行了数据的添加。</p>
+<h4 id="其他修改"><a href="#其他修改" class="headerlink" title="其他修改"></a>其他修改</h4><p>  再有一个支付弹窗，直接使用的是宿主中的方法。所以如果要该支付这块，要更新宿主。那岂不是很麻烦。所以反射就又用到了。功能修改是 点击最后一行的时候由“下单”改为“去支付”。<br>  现有的操作是对这个弹窗视图进行覆写，然后重写其中的点击事件的代码。所有的控件都能顺利拿到，唯独这个点击事件。所有通过反射，当弹窗显示的时候，对这个“下单”的按钮进行hook。</p>
+<p>  代码：</p>
+<pre><code>  private void hookOnClickListener(View view) {
+    try {
+        // 得到 View 的 ListenerInfo 对象
+        //得到getListenerInfo方法
+        Method getListenerInfo = View.class.getDeclaredMethod(&quot;getListenerInfo&quot;);
+        getListenerInfo.setAccessible(true);
+        //得到ListenerInfo变量
+        Object listenerInfo = getListenerInfo.invoke(view);
+        // 得到 原始的 OnClickListener 对象
+        //获取指定类
+        Class&lt;?&gt; listenerInfoClz = Class.forName(&quot;android.view.View$ListenerInfo&quot;);
+        //获取类中的变量
+        Field mOnClickListener = listenerInfoClz.getDeclaredField(&quot;mOnClickListener&quot;);
+        mOnClickListener.setAccessible(true);
+        View.OnClickListener originOnClickListener = (View.OnClickListener) mOnClickListener.get(listenerInfo);
+        // 用自定义的 OnClickListener 替换原始的 OnClickListener
+        View.OnClickListener hookedOnClickListener = new HookedOnClickListener(originOnClickListener);
+        mOnClickListener.set(listenerInfo, hookedOnClickListener);
+    } catch (Exception e) {
+    }
+}
+
+class HookedOnClickListener implements View.OnClickListener {
+    private View.OnClickListener origin;
+
+    HookedOnClickListener(View.OnClickListener origin) {
+        this.origin = origin;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (origin != null) {
+            origin.onClick(v);
+        }
+        payBtn.setText(&quot;去支付&quot;);
+    }
+}</code></pre><p>   还有一种方法就是对setText进行监听，当这个控件被赋值为“下单”的时候，重新赋值为“去支付”。</p>
+<h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>  hook的切入点很重要。顺便对反射进行了复习，觉得法国生物学家拉马克提出的“用进废退”果然没错，经常使用就会很顺利，一不使用的就感觉自己退化了一样，跟不上了。可能导致最后的结局就是“适者生存”吧！</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>  <a href="https://www.jianshu.com/p/9be58ee20dee" target="_blank" rel="noopener">Java高级特性——反射</a></p>
+<p>  <a href="https://blog.csdn.net/shoneworn/article/details/80476089" target="_blank" rel="noopener">Hook技术看这篇就够了</a></p>
+<p>  <a href="https://www.jianshu.com/p/0799aa19ada1" target="_blank" rel="noopener">一文读懂 AOP | 你想要的最全面 AOP 方法探讨</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-03-04T07:52:54.764Z" itemprop="dateUpdated">2020-03-04 15:52:54</time>
+</span><br>
+
+
+        
+        (侵删)转载注明链接：<a href="/2019/12/16/使用反射和插件化实现实现对宿主更新/" target="_blank" rel="external">http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://zhangyongfa888.site">
+            <img src="/img/avatar.jpg" alt="zhangyongfa">
+            zhangyongfa
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/&title=《使用反射和插件化实现实现对宿主更新》 — WE ARE YOUNG STILL...&pic=http://zhangyongfa888.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/&title=《使用反射和插件化实现实现对宿主更新》 — WE ARE YOUNG STILL...&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用反射和插件化实现实现对宿主更新》 — WE ARE YOUNG STILL...&url=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/&via=http://zhangyongfa888.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/20/对一点英语进行破解（xp模块）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">对一点英语进行破解（xp模块）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/29/使用frida脱壳/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用frida脱壳</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+<div id='music'></div>
+<script type="text/javascript" src="https://zhangyongfa888.site/api/RandomMusic.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "PWpkfff1WSoRsr13I9f2WfH3-gzGzoHsz",
+            appKey: "x4tMCz9Cs2iUuXk3vFpr97E1",
+            avatar: "monsterid",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+
+	
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <!-- 
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span> </span> -->
+            <br>
+            <p id="hitokoto" >:D 获取中...</p>
+
+        </p>
+
+    </div>
+    <div class="bottom">
+        <p><span>zhangyongfa &copy; 2018 - 2023</span>
+            <span>
+                
+                <a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备17033377号</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/&title=《使用反射和插件化实现实现对宿主更新》 — WE ARE YOUNG STILL...&pic=http://zhangyongfa888.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/&title=《使用反射和插件化实现实现对宿主更新》 — WE ARE YOUNG STILL...&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用反射和插件化实现实现对宿主更新》 — WE ARE YOUNG STILL...&url=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/&via=http://zhangyongfa888.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://zhangyongfa888.site/2019/12/16/使用反射和插件化实现实现对宿主更新/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADK0lEQVR42u3aS47iQBAFQO5/aWY70kw372UaCRdRK4TddkUhdSo/j0e8nj+sf6/+dH/yzL+/b5/zeMfCxsbGvgn7+evKt/jTVvLtPoP10/25BRsbG/tUdr715HPOSALhO44YGxsbG7sNSMmds/QDGxsbG3sTGPL7k/D2e+UnuYqNjY39zewkSUhKOXlgaw8r/3xxLQ0bGxv749l5V/TzP7+lv42NjY39wexnufJkIC8Ste+6QIGNjY19ELstGG2SkNnhtklRsn9sbGzsk9j77bahJQlIm9J/tENsbGzsL2DnIzj5K/ehqA2cL/oh2NjY2Eewk7LOhpFvOg9mbcv5RRjDxsbGPoL9ouY0Gpd5R/Og7eEWz8HGxsa+LTsJJLMWbF6KylsOs3D1n6vY2NjYB7E3A5f5Ac3C2KYtsZpFxcbGxr4VOw8tm5bALDTu28MvuiLY2NjYB7Hbjc7C2Kwdm+PzI8bGxsY+ib0ff5mN4CTf14z4ydjY2NgnsYfVpsWgT1vxesfoDzY2Nva3sfOt1y3V4F15AasIgdjY2NgHsZMg0bYB2jCzyaJmPwk2Njb2eexZCMn/Nvk+eUI7jlkEUWxsbOzbspMBx7Yov0ke8ubEc7GwsbGxT2Ln/9XzV7YN4Da9qZsBsy4HNjY29m3ZbWnpWnDbYG7LUtjY2NjnsfNG774wlB90cqCbQ8HGxsY+ib0JJG0Ck5elrvoZinISNjY29s3ZOeaCjGeU/GxKSNjY2Nhns9sW76zEnz9zFlDb48PGxsY+iZ0UYmaFoaRslB/9LKV5cXzY2NjYh7LbEcmkoNOWk/KUIx8VjcYusbGxsW/OboNZvvat3PYgoqYvNjY29qHsNgFoE5h23CcCjApP2NjY2GewZ6EoLxvlwzTtcGc7svPIt4iNjY19K3YbAPL27SbByA8lCXur0SJsbGzsm7BnQStPDDYthHaEKP8xsLGxsc9jb8ru7RjNLFi2qcWLPWNjY2N/MXtWsmnLRu9o8WJjY2Njt+DkzvbqrN2LjY2N/Q3sWfN1PzG0aSqvjhgbGxv7IPZViUT+4n3bOHnCBeM72NjY2J/O/gNreVPve2otzQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script async src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '草榴社區-t66y.com ...';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"tagMode":false});</script></body>
+</html>
